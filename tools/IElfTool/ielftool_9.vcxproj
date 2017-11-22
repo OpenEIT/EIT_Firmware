@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>IElfTool</ProjectName>
+    <ProjectGuid>{879E65D3-F36D-4359-BBB6-0172CAB95C93}</ProjectGuid>
+    <RootNamespace>IElfTool</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug_Win32_9\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug_Win32_9\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release_Win32_9\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release_Win32_9\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)ielftool.exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)ielftool.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)ielftool.exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)ielftool.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\LxElfChecksumCmd.cpp" />
+    <ClCompile Include="src\LxElfCmd.cpp" />
+    <ClCompile Include="src\LxElfCmdFactory.cpp" />
+    <ClCompile Include="src\LxElfDataBuffer.cpp" />
+    <ClCompile Include="src\LxElfException.cpp" />
+    <ClCompile Include="src\LxElfFile.cpp" />
+    <ClCompile Include="src\LxElfFillCmd.cpp" />
+    <ClCompile Include="src\LxElfRelocCmd.cpp" />
+    <ClCompile Include="src\LxElfSaveBinCmd.cpp" />
+    <ClCompile Include="src\LxElfSaveCmd.cpp" />
+    <ClCompile Include="src\LxElfSaveCmdBase.cpp" />
+    <ClCompile Include="src\LxElfSaveIHexCmd.cpp" />
+    <ClCompile Include="src\LxElfSaveSimpleCode.cpp" />
+    <ClCompile Include="src\LxElfSaveSRecCmd.cpp" />
+    <ClCompile Include="src\LxElfSaveTiTxtCmd.cpp" />
+    <ClCompile Include="src\LxElfStripCmd.cpp" />
+    <ClCompile Include="src\LxMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\LxElfChecksumCmd.h" />
+    <ClInclude Include="src\LxElfCmd.h" />
+    <ClInclude Include="src\LxElfCmdFactory.h" />
+    <ClInclude Include="src\LxElfDataBuffer.h" />
+    <ClInclude Include="src\LxElfException.h" />
+    <ClInclude Include="src\LxElfFile.h" />
+    <ClInclude Include="src\LxElfFillCmd.h" />
+    <ClInclude Include="src\LxElfParityCmd.h" />
+    <ClInclude Include="src\LxElfRelocCmd.h" />
+    <ClInclude Include="src\LxElfSaveBinCmd.h" />
+    <ClInclude Include="src\LxElfSaveCmd.h" />
+    <ClInclude Include="src\LxElfSaveCmdBase.h" />
+    <ClInclude Include="src\LxElfSaveIHexCmd.h" />
+    <ClInclude Include="src\LxElfSaveSimpleCode.h" />
+    <ClInclude Include="src\LxElfSaveSRecCmd.h" />
+    <ClInclude Include="src\LxElfSaveTiTxtCmd.h" />
+    <ClInclude Include="src\LxElfStripCmd.h" />
+    <ClInclude Include="src\LxElfTypes.h" />
+    <ClInclude Include="src\LxMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\Version.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

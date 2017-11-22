@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Readme_PinMuxTool</title>
+  <style type="text/css">
+    body {font: 12px Arial, Helvetica, Verdana;}
+    table {font: 12px Arial, Helvetica, Verdana;}
+    h1 { font: bold 24px Helvetica; color:#003366; width:100%; border-bottom:1px solid #003366; margin-top:30px; margin-bottom:30px }
+    h2 { font: bold 18px Helvetica; color:#000000; border:0px; margin-top:20px; margin-bottom:20px }
+    h3 { font: bold 14px Helvetica; color:#000000; border:0px; margin-top:20px; margin-bottom:20px }
+    table {tet-align: left; width: 600px }
+    caption {caption-side: bottom;}
+    td {vertical-align: top;}
+    td.heading1 {vertical-align: top; width: 220px; text-align: center; font-weight: bold;}
+    td.heading2 {vertical-align: top; text-align: center; font-weight: bold;}
+    
+  </style></head>
+  <body>
+
+    <h3><a name="DE">Description<br></a></h3>
+    <p>The ADUCM350 processor is rich in peripherals. Most pins are shared by multiple signals, and ports function as multiplexer controls. The Pin Multiplexing tool automates conflict detection and code generation for programming the port control registers.  Pin multiplexing code generation directly sets the port control registers of a processor. The tool uses the hardware-specific mapping between the on-board peripherals of a processor and its port pins.</p>
+    
+	<h3><a name="OV">Software Requirement</a></h3>
+    <p> The PinMux tool requires the Java 64-bit run-time software.  The Java software can be downloaded from <a href="https://java.com/en/download/index.jsp">java.com</a>
+    </p>
+
+    <h3><a name="OV">Usage</a></h3>
+    <p> The PinMux tool is run from the command line.  Open a command prompt window in the tool/PinMuxUI folder.  Execute the command: 
+	<br><br><code> java -jar PinMux64.jar</code>
+    </p>
+
+	<h3><a name="OV">Generate Code</a></h3>
+    <p> After making the signal selection in the PinMux tool press the Generate Code button and save the .c file.  Include this generated file in your project and call the <b>adi_initpinmux()</b> function.
+    </p>
+
+    <h3><a name="HW">IAR EW Tool Setup</a></h3>
+    <p> A tool link can be created within the IAR Embedded Workbench to run the PinMux tool.  In IAR EW, open the Tools&#8594;Configure Tools menu.  Create a new tool with these settings:
+	<br><br>
+	<img src="PinMuxToolConfig.JPG">
+    </p>
+    
+</body></html>

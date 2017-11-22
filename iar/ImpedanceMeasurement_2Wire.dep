@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2486161640</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\wdt.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.__cstat.et</file>
+      <file>$PROJ_DIR$\..\inc\macros.h</file>
+      <file>$PROJ_DIR$\..\inc\adi_nvic.h</file>
+      <file>$PROJ_DIR$\..\inc\ADuCM350_device.h</file>
+      <file>$PROJ_DIR$\..\inc\config\adi_wdt_config.h</file>
+      <file>$PROJ_DIR$\..\inc\afe_lib.h</file>
+      <file>$PROJ_DIR$\..\inc\wdt.h</file>
+      <file>$PROJ_DIR$\..\inc\adi_rtos.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\PinMux.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\afe_lib.o</file>
+      <file>$PROJ_DIR$\..\inc\startup.h</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\core_cm3.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\afe.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\ImpedanceMeasurement_2Wire.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\..\inc\misra.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\arm_math.h</file>
+      <file>$PROJ_DIR$\..\inc\config\adi_afe_config.h</file>
+      <file>$PROJ_DIR$\..\inc\uart.h</file>
+      <file>$PROJ_DIR$\..\inc\config\adi_uart_config.h</file>
+      <file>$PROJ_DIR$\..\inc\adi_sid_cm350.h</file>
+      <file>$PROJ_DIR$\..\inc\system.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xtgmath.h</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\PinMux.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\test_common.__cstat.et</file>
+      <file>$PROJ_DIR$\..\inc\gpio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\dma.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\gpio.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.o</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\core_cmFunc.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\math.h</file>
+      <file>$PROJ_DIR$\..\inc\config\adi_gpt_config.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ImpedanceMeasurement_2Wire.pbi</file>
+      <file>$PROJ_DIR$\..\inc\afe_sequences.h</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\core_cmInstr.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup.__cstat.et</file>
+      <file>$PROJ_DIR$\..\inc\device.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\system.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ImpedanceMeasurement_2Wire.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\dma.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\wdt.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\afe_lib.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\system.__cstat.et</file>
+      <file>$PROJ_DIR$\..\inc\wut.h</file>
+      <file>$PROJ_DIR$\..\inc\adi_int.h</file>
+      <file>$PROJ_DIR$\..\inc\config\adi_wut_config.h</file>
+      <file>$PROJ_DIR$\..\inc\defADuCM350.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
+      <file>$PROJ_DIR$\..\inc\dma.h</file>
+      <file>$PROJ_DIR$\..\test_common.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\PinMux.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\ImpedanceMeasurement_2Wire.__cstat.et</file>
+      <file>$PROJ_DIR$\..\inc\gpt.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\afe.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\afe_lib.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\ymath.h</file>
+      <file>$PROJ_DIR$\..\inc\config\adi_global_config.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
+      <file>$PROJ_DIR$\..\src\dma.c</file>
+      <file>$PROJ_DIR$\..\src\afe.c</file>
+      <file>$PROJ_DIR$\..\src\afe_lib.c</file>
+      <file>$PROJ_DIR$\..\src\gpio.c</file>
+      <file>$PROJ_DIR$\..\src\uart.c</file>
+      <file>$PROJ_DIR$\..\src\wdt.c</file>
+      <file>$PROJ_DIR$\..\src\startup.c</file>
+      <file>$PROJ_DIR$\..\src\system.c</file>
+      <file>$PROJ_DIR$\..\ImpedanceMeasurement_2Wire.c</file>
+      <file>$PROJ_DIR$\..\PinMux.c</file>
+      <file>$PROJ_DIR$\..\sequences.h</file>
+      <file>$PROJ_DIR$\..\test_common.c</file>
+      <file>$PROJ_DIR$\..\Readme.txt</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ImpedanceMeasurement_2Wire.bin</file>
+      <file>$PROJ_DIR$\Debug\Obj\gpio.o</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Lib\IAR\iar_cortexM3l_math.a</file>
+      <file>$PROJ_DIR$\Debug\List\ImpedanceMeasurement_2Wire.log</file>
+      <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\test_common.o</file>
+      <file>$PROJ_DIR$\..\inc\afe.h</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$PROJ_DIR$\Debug\List\ImpedanceMeasurement_2Wire.map</file>
+      <file>$TOOLKIT_DIR$\config\linker\AnalogDevices\ADuCM350BBCZ.icf</file>
+      <file>$PROJ_DIR$\Debug\Obj\wdt.__cstat.et</file>
+      <file>$PROJ_DIR$\..\inc\adi_version.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ystdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ImpedanceMeasurement_2Wire.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\dma.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\test_common.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\gpio.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\system.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\afe.o</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 45 94 89</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\ImpedanceMeasurement_2Wire.out</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 94 89</file>
+        </tool>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 86</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 95 109 12 46 87 16 61 49 108 91 34 1 88 102 93 28 90</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\dma.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 46</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 101</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 70 5 106 11 54 42 24 47 53 59 18 97 14 40 105 71 9 3 4 25 85 17 0 19 104 56 26 35 58 64 63 31 37 55 99</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 59 42 70 9 54 85 47 11 17 19 104 0 106 44 3 56 24 4 97 14 40 58 105 35 25 64 26 63 37 53 55 31 5 71 99</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\afe.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 109</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 85 37 92 19 58 31 42 98 26 3 56 35 64 59 23 18 11 0 17 104 9 4 25 63 55 54 106 70 24 97 14 5 44 40 105 53 22 21</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 98 47 11 17 19 104 0 106 26 59 42 70 9 54 85 44 3 56 24 4 97 14 40 58 105 35 25 64 63 37 53 55 31 5 92 22 23 21</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\afe_lib.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 66</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11 21 4 25 53 7 26 42 9 44 54 98 22 47 106 3 85 56 40 105 18 92 39 0 17 19 104 59 70 24 97 14 5 23 35 58 64 63 31 37 55</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 98 47 11 17 19 104 0 106 26 92 42 70 9 54 85 44 3 56 24 4 97 14 40 58 105 35 25 64 63 37 53 55 31 5 59 22 23 21 7 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\gpio.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 87</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 107</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85 11 42 47 3 0 104 55 31 18 9 4 25 17 19 56 35 54 70 24 97 14 5 44 106 40 105 53 37 58 64 63 26</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 31 42 70 9 54 85 47 11 17 19 104 0 106 44 3 56 24 4 97 14 40 58 105 35 25 64 26 63 37 53 55 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\uart.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 34</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 54 4 25 64 22 11 50 9 35 55 18 26 106 23 3 85 56 58 31 42 67 17 0 19 104 70 24 97 14 5 44 63 37 40 105 53</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 64 47 11 17 19 104 0 106 26 67 50 22 42 70 9 54 85 44 3 56 24 4 97 14 40 58 105 35 25 63 37 53 55 31 5 23</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\wdt.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 96</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 106 11 47 58 18 4 25 31 13 9 85 42 64 6 3 56 35 55 54 8 17 0 19 104 70 24 97 14 5 44 63 37 40 105 53</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 64 47 11 17 19 104 0 106 26 8 42 70 9 54 85 44 3 56 24 4 97 14 40 58 105 35 25 63 37 53 55 31 5 6 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\startup.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 68</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 41</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55 47 24 54 11 70 5 44 106 42 18 97 14 56 9 3 4 25 85 17 0 19 104 40 105 53 37 13 35 58 64 63 31 26</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 13 42 70 9 54 85 47 11 17 19 104 0 106 44 18 3 56 24 4 97 14 40 58 105 35 25 64 26 63 37 53 55 31 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\src\system.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 108</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 104 85 0 63 3 47 42 26 58 37 17 19 64 31 9 4 25 35 11 106 53 70 18 24 97 14 5 54 44 56 55 40 105</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 85 47 11 17 19 104 0 106 25 64 26 42 70 9 54 44 18 3 56 24 4 97 14 40 58 105 35 5 63 37 53 55 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\ImpedanceMeasurement_2Wire.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 62</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71 47 11 17 19 104 0 106 26 99 20 14 85 40 58 105 35 67 50 36 69 27 60 8 42 70 9 54 44 18 3 56 24 4 97 25 64 63 37 53 55 31 5 6 92 59 22 23 21 7 82</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\PinMux.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 61</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58 18 14 54 11 47 55 97 44 106 85 63 42 70 24 5 56 35 64 31 37 9 3 4 25 17 0 19 104 40 105 53 26</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42 70 9 54 85 47 11 17 19 104 0 106 44 18 3 56 24 4 97 14 40 58 105 35 25 64 26 63 37 53 55 31 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\test_common.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 103</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 91</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85 40 105 26 11 47 54 67 50 6 3 42 98 106 0 9 4 25 44 53 71 64 60 17 19 104 99 8 70 18 24 97 14 5 56 35 58 63 31 37 55</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 85 47 11 17 19 104 0 106 71 26 99 98 64 67 50 60 8 42 70 9 54 44 18 3 56 24 4 97 14 40 58 105 35 25 63 37 53 55 31 5 6</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

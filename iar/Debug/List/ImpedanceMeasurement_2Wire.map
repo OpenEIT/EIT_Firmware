@@ -1,0 +1,721 @@
+###############################################################################
+#
+# IAR ELF Linker V7.50.1.10123/W32 for ARM                29/Nov/2016  15:48:20
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Exe\ImpedanceMeasurement_2Wire.out.tmp
+#    Map file     =  
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\List\ImpedanceMeasurement_2Wire.map
+#    Command line =  
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\afe.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\afe_lib.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\dma.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\gpio.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\ImpedanceMeasurement_2Wire.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\PinMux.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\startup.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\system.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\test_common.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\uart.o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj\wdt.o --redirect
+#        _Printf=_PrintfSmall --redirect _Scanf=_ScanfSmall -o
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Exe\ImpedanceMeasurement_2Wire.out.tmp
+#        --keep __checksum0 --keep __checksum1 --keep __parity0 --keep
+#        __parity1 --map
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\List\ImpedanceMeasurement_2Wire.map
+#        --log
+#        libraries,initialization,modules,redirects,sections,veneers,unused_fragments
+#        --log_file
+#        C:\Users\jean\Desktop\EITCODE\C\iar\Debug\List\ImpedanceMeasurement_2Wire.log
+#        --config "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        7.3\arm\config\linker\AnalogDevices\ADuCM350BBCZ.icf" --keep
+#        __checksum --place_holder __checksum0,4,.checksum0,4 --place_holder
+#        __checksum1,4,.checksum1,4 --place_holder __parity0,0x1F00,.parity0,4
+#        --place_holder __parity1,0x0F80,.parity1,4 --semihosting --entry
+#        __iar_program_start --place_holder __checksum,4,.checksum,4
+#        --define_symbol __checksum_begin=0x0 --define_symbol
+#        __checksum_end=0x7f7 --redirect __write=__write_buffered "C:\Program
+#        Files (x86)\IAR Systems\Embedded Workbench
+#        7.3\arm\CMSIS\Lib\IAR\iar_cortexM3l_math.a" --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x000007fc { block CHECKSUM };
+"A2":  place at 0x000007f8 { block RSIGNATURE };
+"A3":  place at end of [0x00000800-0x0003ffff] { block CHECKSUM0 };
+"A4":  place at end of [0x00040000-0x0005ffff] { block CHECKSUM1 };
+"A5":  place at 0x0005ffe8 { block JTAG_DISABLE };
+"A6":  place at 0x0005ffec { block LOWER_FA_KEY };
+"A7":  place at 0x0005fff0 { block UPPER_FA_KEY };
+"A8":  place at 0x0005fff4 { block WRITE_PROTECT };
+"A9":  place at 0x0003e000 { block PARITY0 };
+"A10": place at 0x0005f000 { block PARITY1 };
+"A11": place at start of [0x00000000-0x000007ff] { ro section .intvec };
+"P1":  place in [from 0x00000800 to 0x0005ffff] { ro };
+"A12": place at end of [0x20000000-0x20003fff] { block CSTACK };
+"P2":  place in [from 0x20000000 to 0x20003fff] { rw, block HEAP };
+
+  Section            Kind        Address    Size  Object
+  -------            ----        -------    ----  ------
+"A11":                                     0x134
+  .intvec            const    0x00000000   0x134  startup.o [1]
+                            - 0x00000134   0x134
+
+"A2":                                        0x4
+  RSIGNATURE                  0x000007f8     0x4  <Block>
+    RSIGNATURE       uninit   0x000007f8     0x4  <Block tail>
+                            - 0x000007fc     0x4
+
+"A1":                                        0x4
+  CHECKSUM                    0x000007fc     0x4  <Block>
+    .checksum        const    0x000007fc     0x4  Place holder __checksum
+                            - 0x00000800     0x4
+
+"P1":                                     0x51ab
+  .text              ro code  0x00000800  0x115c  afe.o [1]
+  .text              ro code  0x0000195c  0x1048  system.o [1]
+  .text              ro code  0x000029a4   0x4c8  dma.o [1]
+  .text              ro code  0x00002e6c   0x29a  gpio.o [1]
+  .text              ro code  0x00003106    0x76  lz77_init_single.o [6]
+  .text              ro code  0x0000317c    0x56  ABImemcpy_unaligned.o [6]
+  .text              ro code  0x000031d2     0xa  xsprout.o [3]
+  .text              ro code  0x000031dc   0x5f0  ImpedanceMeasurement_2Wire.o [1]
+  .text              ro code  0x000037cc    0xaa  test_common.o [1]
+  .text              ro code  0x00003878    0x10  PinMux.o [1]
+  .text              ro code  0x00003888   0x502  afe_lib.o [1]
+  .text              ro code  0x00003d8c   0x11a  arm_cmplx_mag_q31.o [4]
+  .text              ro code  0x00003ea8    0x34  sprintf.o [3]
+  .text              ro code  0x00003edc    0x1c  strcat.o [3]
+  .text              ro code  0x00003ef8   0x370  uart.o [1]
+  .text              ro code  0x00004268    0x8e  arm_mult_q15.o [4]
+  .text              ro code  0x000042f8    0xa2  arm_q15_to_q31.o [4]
+  .text              ro code  0x0000439c   0x132  I64DivMod.o [6]
+  .text              ro code  0x000044d0    0x24  printf.o [3]
+  .text              ro code  0x000044f4   0x1d4  wdt.o [1]
+  .text              ro code  0x000046c8     0x4  exit.o [3]
+  .text              ro code  0x000046cc    0x22  S64Shr.o [6]
+  .text              ro code  0x000046f0    0xfc  arm_sqrt_q31.o [4]
+  .text              ro code  0x000047ec   0x4d8  xprintfsmall.o [3]
+  .text              ro code  0x00004cc4     0x2  I64DivZer.o [6]
+  .text              ro code  0x00004cc8     0xe  cexit.o [6]
+  .text              ro code  0x00004cd8    0x2e  I32ToFlt.o [5]
+  .text              ro code  0x00004d08    0xd8  FltMul.o [5]
+  .text              ro code  0x00004de0    0x44  FltToS32.o [5]
+  .text              ro code  0x00004e24    0x16  strchr.o [6]
+  .text              ro code  0x00004e3c    0x36  strlen.o [6]
+  .text              ro code  0x00004e74    0x58  memchr.o [6]
+  .text              ro code  0x00004ecc     0xc  xcloseall.o [3]
+  .text              ro code  0x00004ed8    0x14  exit.o [7]
+  .text              ro code  0x00004eec    0xc0  xxwritebuffered.o [3]
+  .text              ro code  0x00004fac    0x6c  iarttio.o [7]
+  .text              ro code  0x00005018    0x1e  dwrite.o [7]
+  .text              ro code  0x00005038     0x8  XShttio.o [3]
+  .text              ro code  0x00005040    0x20  iarwstd.o [7]
+  .text              ro code  0x00005060    0x22  iarwrite.o [7]
+  .rodata            const    0x00005084    0xc8  system.o [1]
+  .text              ro code  0x0000514c    0xa4  startup.o [1]
+  .text              ro code  0x000051f0    0x1a  cmain.o [6]
+  .text              ro code  0x0000520a     0x4  low_level_init.o [3]
+  .text              ro code  0x00005210    0x28  data_init.o [6]
+  .rodata            const    0x00005238    0x80  uart.o [1]
+  .rodata            const    0x000052b8    0x60  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005318    0x5c  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005374    0x58  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x000053cc    0x58  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005424    0x54  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005478    0x54  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x000054cc    0x54  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005520    0x50  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005570    0x4c  ImpedanceMeasurement_2Wire.o [1]
+  .text              ro code  0x000055bc    0x40  zero_init3.o [6]
+  .rodata            const    0x000055fc    0x38  test_common.o [1]
+  .rodata            const    0x00005634    0x28  afe_lib.o [1]
+  .text              ro code  0x0000565c    0x28  putchar.o [3]
+  .rodata            const    0x00005684    0x24  afe_lib.o [1]
+  .rodata            const    0x000056a8    0x24  afe_lib.o [1]
+  .rodata            const    0x000056cc    0x24  afe_lib.o [1]
+  .iar.init_table    const    0x000056f0    0x20  - Linker created -
+  .rodata            const    0x00005710    0x20  afe_lib.o [1]
+  .rodata            const    0x00005730    0x20  afe_lib.o [1]
+  .rodata            const    0x00005750    0x1c  afe_lib.o [1]
+  .rodata            const    0x0000576c    0x1c  afe_lib.o [1]
+  .rodata            const    0x00005788    0x1c  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x000057a4    0x1c  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x000057c0    0x1c  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x000057dc    0x1c  test_common.o [1]
+  .rodata            const    0x000057f8    0x18  test_common.o [1]
+  .text              ro code  0x00005810    0x16  xprout.o [3]
+  .rodata            const    0x00005828    0x14  gpio.o [1]
+  .rodata            const    0x0000583c    0x10  afe_lib.o [1]
+  .rodata            const    0x0000584c    0x10  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x0000585c     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005868     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005874     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005880     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x0000588c     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x00005898     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .rodata            const    0x000058a4     0xc  ImpedanceMeasurement_2Wire.o [1]
+  .text              ro code  0x000058b0     0xc  cstartup_M.o [6]
+  .rodata            const    0x000058bc     0x8  test_common.o [1]
+  .rodata            const    0x000058c4     0x8  test_common.o [1]
+  .rodata            const    0x000058cc     0x8  wdt.o [1]
+  .rodata            const    0x000058d4     0x4  afe.o [1]
+  .rodata            const    0x000058d8     0x4  dma.o [1]
+  .rodata            const    0x000058dc     0x4  test_common.o [1]
+  .text              ro code  0x000058e0     0x0  cstart_closeall.o [6]
+  .rodata            const    0x000058e0     0x0  zero_init3.o [6]
+  .rodata            const    0x000058e0     0x0  lz77_init_single.o [6]
+  Initializer bytes  const    0x000058e0    0xcb  <for P2-1>
+                            - 0x000059ab  0x51ab
+
+"A9":                                     0x1f00
+  PARITY0                     0x0003e000  0x1f00  <Block>
+    .parity0         const    0x0003e000  0x1f00  Place holder __parity0
+                            - 0x0003ff00  0x1f00
+
+"A3":                                        0x8
+  CHECKSUM0                   0x0003fff8     0x8  <Block>
+    .checksum0       const    0x0003fff8     0x4  Place holder __checksum0
+    CHECKSUM0        const    0x0003fffc     0x4  <Block tail>
+                            - 0x00040000     0x8
+
+"A10":                                     0xf80
+  PARITY1                     0x0005f000   0xf80  <Block>
+    .parity1         const    0x0005f000   0xf80  Place holder __parity1
+                            - 0x0005ff80   0xf80
+
+"A5":                                        0x4
+  JTAG_DISABLE                0x0005ffe8     0x4  <Block>
+    JTAG_DISABLE     uninit   0x0005ffe8     0x4  <Block tail>
+                            - 0x0005ffec     0x4
+
+"A6":                                        0x4
+  LOWER_FA_KEY                0x0005ffec     0x4  <Block>
+    LOWER_FA_KEY     uninit   0x0005ffec     0x4  <Block tail>
+                            - 0x0005fff0     0x4
+
+"A7":                                        0x4
+  UPPER_FA_KEY                0x0005fff0     0x4  <Block>
+    UPPER_FA_KEY     uninit   0x0005fff0     0x4  <Block tail>
+                            - 0x0005fff4     0x4
+
+"A8":                                        0x4
+  WRITE_PROTECT               0x0005fff4     0x4  <Block>
+    WRITE_PROTECT    uninit   0x0005fff4     0x4  <Block tail>
+                            - 0x0005fff8     0x4
+
+"A4":                                        0x8
+  CHECKSUM1                   0x0005fff8     0x8  <Block>
+    .checksum1       const    0x0005fff8     0x4  Place holder __checksum1
+    CHECKSUM1        const    0x0005fffc     0x4  <Block tail>
+                            - 0x00060000     0x8
+
+"P2", part 1 of 2:                         0x2cc
+  P2-1                        0x20000000   0x2cc  <Init block>
+    .data            inited   0x20000000     0x4  dma.o [1]
+    .data            inited   0x20000004     0x4  dma.o [1]
+    .data            inited   0x20000008   0x26c  ImpedanceMeasurement_2Wire.o [1]
+    .data            inited   0x20000274     0xc  system.o [1]
+    .data            inited   0x20000280    0x44  uart.o [1]
+    .data            inited   0x200002c4     0x8  XShttio.o [3]
+                            - 0x200002cc   0x2cc
+
+"P2", part 2 of 2:                         0x368
+  .bss               zero     0x20000400   0x200  dma.o [1]
+  .bss               zero     0x20000600    0x60  afe.o [1]
+  .bss               zero     0x20000660    0x5c  gpio.o [1]
+  .bss               zero     0x200006bc    0x54  xxwritebuffered.o [3]
+  .bss               zero     0x20000710    0x18  afe.o [1]
+  .bss               zero     0x20000728    0x18  afe.o [1]
+  .bss               zero     0x20000740     0xc  dma.o [1]
+  .bss               zero     0x2000074c     0x4  afe.o [1]
+  .bss               zero     0x20000750     0x4  ImpedanceMeasurement_2Wire.o [1]
+  .bss               zero     0x20000754     0x4  system.o [1]
+  .bss               zero     0x20000758     0x4  system.o [1]
+  .bss               zero     0x2000075c     0x4  system.o [1]
+  .bss               zero     0x20000760     0x4  wdt.o [1]
+  .bss               zero     0x20000764     0x1  afe.o [1]
+  .bss               zero     0x20000765     0x1  system.o [1]
+  .bss               zero     0x20000766     0x1  system.o [1]
+                            - 0x20000767   0x367
+
+"A12":                                     0x400
+  CSTACK                      0x20003c00   0x400  <Block>
+    CSTACK           uninit   0x20003c00   0x400  <Block tail>
+                            - 0x20004000   0x400
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x367:
+          0x20000400  0x367
+
+Copy/lz77 (__iar_lz77_init_single3)
+    1 source range, total size 0xcb (28% of destination):
+          0x000058e0   0xcb
+    1 destination range, total size 0x2cc:
+          0x20000000  0x2cc
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                        ro code  ro data  rw data
+    ------                        -------  -------  -------
+C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj: [1]
+    ImpedanceMeasurement_2Wire.o    1 520    1 132      624
+    PinMux.o                           16
+    afe.o                           4 444        4      149
+    afe_lib.o                       1 282      284
+    dma.o                           1 224        6      532
+    gpio.o                            666       20       92
+    startup.o                         164      308
+    system.o                        4 168      203       26
+    test_common.o                     170      128
+    uart.o                            880      147       68
+    wdt.o                             468        8        4
+    -------------------------------------------------------
+    Total:                         15 002    2 240    1 495
+
+command line: [2]
+    -------------------------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    XShttio.o                           8        3        8
+    exit.o                              4
+    low_level_init.o                    4
+    printf.o                           36
+    putchar.o                          40
+    sprintf.o                          52
+    strcat.o                           28
+    xcloseall.o                        12
+    xprintfsmall.o                  1 240
+    xprout.o                           22
+    xsprout.o                          10
+    xxwritebuffered.o                 192                84
+    -------------------------------------------------------
+    Total:                          1 648        3       92
+
+iar_cortexM3l_math.a: [4]
+    arm_cmplx_mag_q31.o               282
+    arm_mult_q15.o                    142
+    arm_q15_to_q31.o                  162
+    arm_sqrt_q31.o                    252
+    -------------------------------------------------------
+    Total:                            838
+
+m7M_tl.a: [5]
+    FltMul.o                          216
+    FltToS32.o                         68
+    I32ToFlt.o                         46
+    -------------------------------------------------------
+    Total:                            330
+
+rt7M_tl.a: [6]
+    ABImemcpy_unaligned.o              86
+    I64DivMod.o                       306
+    I64DivZer.o                         2
+    S64Shr.o                           34
+    cexit.o                            14
+    cmain.o                            26
+    cstart_closeall.o
+    cstartup_M.o                       12
+    data_init.o                        40
+    lz77_init_single.o                118
+    memchr.o                           88
+    strchr.o                           22
+    strlen.o                           54
+    zero_init3.o                       64
+    -------------------------------------------------------
+    Total:                            866
+
+shb_l.a: [7]
+    dwrite.o                           30
+    exit.o                             20
+    iarttio.o                         108
+    iarwrite.o                         34
+    iarwstd.o                          32
+    -------------------------------------------------------
+    Total:                            224
+
+    Gaps                               28        4
+    Linker created                              40    1 044
+-----------------------------------------------------------
+    Grand Total:                   18 936   14 203    2 631
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address    Size  Type      Object
+-----                      -------    ----  ----      ------
+.iar.init_table$$Base   0x000056f0           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00005710           --   Gb  - Linker created -
+?main                   0x000051f1          Code  Gb  cmain.o [6]
+AFE_Capture_Int_Handler
+                        0x00001555    0xae  Code  Gb  afe.o [1]
+AFE_CmdFIFO_Int_Handler
+                        0x00001673    0xd6  Code  Gb  afe.o [1]
+AFE_DataFIFO_Int_Handler
+                        0x00001749    0xa0  Code  Gb  afe.o [1]
+AFE_DevData             0x20000600    0x60  Data  Gb  afe.o [1]
+AFE_Generate_Int_Handler
+                        0x00001603    0x70  Code  Gb  afe.o [1]
+ArePinsValid            0x000030dd    0x10  Code  Lc  gpio.o [1]
+Beep_Int_Handler        0x000051dd     0x2  Code  Wk  startup.o [1]
+BusFault_Handler        0x00005193     0x2  Code  Wk  startup.o [1]
+CHECKSUM$$Base          0x000007fc           --   Gb  - Linker created -
+CHECKSUM$$Limit         0x00000800           --   Gb  - Linker created -
+CHECKSUM0$$Base         0x0003fff8           --   Gb  - Linker created -
+CHECKSUM0$$Limit        0x00040000           --   Gb  - Linker created -
+CHECKSUM1$$Base         0x0005fff8           --   Gb  - Linker created -
+CHECKSUM1$$Limit        0x00060000           --   Gb  - Linker created -
+CSTACK$$Base            0x20003c00           --   Gb  - Linker created -
+CSTACK$$Limit           0x20004000           --   Gb  - Linker created -
+CapTouch_Int_Handler    0x000051e1     0x2  Code  Wk  startup.o [1]
+ClockStateConfig        0x20000274     0xc  Data  Lc  system.o [1]
+CommonInterruptHandler  0x00002fa5    0x82  Code  Gb  gpio.o [1]
+DMA_AFE_RX_Int_Handler  0x00001819   0x104  Code  Gb  afe.o [1]
+DMA_AFE_TX_Int_Handler  0x000017e9    0x28  Code  Gb  afe.o [1]
+DMA_CRC_Int_Handler     0x000051c7     0x2  Code  Wk  startup.o [1]
+DMA_DevData             0x20000740     0xc  Data  Gb  dma.o [1]
+DMA_Err_Int_Handler     0x000051af     0x2  Code  Wk  startup.o [1]
+DMA_I2C0_MX_Int_Handler
+                        0x000051c5     0x2  Code  Wk  startup.o [1]
+DMA_I2C0_SRX_Int_Handler
+                        0x000051c3     0x2  Code  Wk  startup.o [1]
+DMA_I2C0_STX_Int_Handler
+                        0x000051c1     0x2  Code  Wk  startup.o [1]
+DMA_I2S_Int_Handler     0x000051cb     0x2  Code  Wk  startup.o [1]
+DMA_PDI_Int_Handler     0x000051c9     0x2  Code  Wk  startup.o [1]
+DMA_SPI0_RX_Int_Handler
+                        0x000051b7     0x2  Code  Wk  startup.o [1]
+DMA_SPI0_TX_Int_Handler
+                        0x000051b5     0x2  Code  Wk  startup.o [1]
+DMA_SPI1_RX_Int_Handler
+                        0x000051bb     0x2  Code  Wk  startup.o [1]
+DMA_SPI1_TX_Int_Handler
+                        0x000051b9     0x2  Code  Wk  startup.o [1]
+DMA_SPIH_RX_Int_Handler
+                        0x000051b3     0x2  Code  Wk  startup.o [1]
+DMA_SPIH_TX_Int_Handler
+                        0x000051b1     0x2  Code  Wk  startup.o [1]
+DMA_UART_RX_Int_Handler
+                        0x000051bf     0x2  Code  Wk  startup.o [1]
+DMA_UART_TX_Int_Handler
+                        0x000051bd     0x2  Code  Wk  startup.o [1]
+DebugMon_Handler        0x00005199     0x2  Code  Wk  startup.o [1]
+Ext_Int0_Handler        0x00003027     0xc  Code  Gb  gpio.o [1]
+Ext_Int1_Handler        0x00003033     0xc  Code  Gb  gpio.o [1]
+Ext_Int2_Handler        0x0000303f     0xc  Code  Gb  gpio.o [1]
+Ext_Int3_Handler        0x0000304b     0xc  Code  Gb  gpio.o [1]
+Ext_Int4_Handler        0x00003057     0xc  Code  Gb  gpio.o [1]
+Ext_Int5_Handler        0x00003063     0xc  Code  Gb  gpio.o [1]
+Ext_Int6_Handler        0x0000306f     0xc  Code  Gb  gpio.o [1]
+Ext_Int7_Handler        0x0000307b     0xc  Code  Gb  gpio.o [1]
+Ext_Int8_Handler        0x00003087     0xc  Code  Gb  gpio.o [1]
+Flash0_Int_Handler      0x000051a5     0x2  Code  Wk  startup.o [1]
+Flash1_Int_Handler      0x000051d7     0x2  Code  Wk  startup.o [1]
+GPFlash_Int_Handler     0x000051e3     0x2  Code  Wk  startup.o [1]
+GPIO_A_Int_Handler      0x00003093     0xc  Code  Gb  gpio.o [1]
+GPIO_B_Int_Handler      0x0000309f     0xc  Code  Gb  gpio.o [1]
+GP_Tmr0_Int_Handler     0x000051a1     0x2  Code  Wk  startup.o [1]
+GP_Tmr1_Int_Handler     0x000051a3     0x2  Code  Wk  startup.o [1]
+GP_Tmr2_Int_Handler     0x000051d5     0x2  Code  Wk  startup.o [1]
+GetClockSourceStatus    0x000022bf    0xda  Code  Gb  system.o [1]
+GetSystemClockMux       0x00001bf1    0x68  Code  Gb  system.o [1]
+HardFault_Handler       0x0000518f     0x2  Code  Wk  startup.o [1]
+I2C0_Master_Int_Handler
+                        0x000051ad     0x2  Code  Wk  startup.o [1]
+I2C0_Slave_Int_Handler  0x000051ab     0x2  Code  Wk  startup.o [1]
+I2S_Int_Handler         0x000051d3     0x2  Code  Wk  startup.o [1]
+IsInterruptValid        0x000030ed    0x1a  Code  Lc  gpio.o [1]
+IsPortValid             0x000030ab    0x22  Code  Lc  gpio.o [1]
+JTAG_DISABLE$$Base      0x0005ffe8           --   Gb  - Linker created -
+JTAG_DISABLE$$Limit     0x0005ffec           --   Gb  - Linker created -
+LCD_Int_Handler         0x000051df     0x2  Code  Wk  startup.o [1]
+LOWER_FA_KEY$$Base      0x0005ffec           --   Gb  - Linker created -
+LOWER_FA_KEY$$Limit     0x0005fff0           --   Gb  - Linker created -
+LoadInt                 0x00004b73    0x4c  Code  Lc  xprintfsmall.o [3]
+MemManage_Handler       0x00005191     0x2  Code  Wk  startup.o [1]
+NVIC_DisableIRQ         0x00000817    0x16  Code  Lc  afe.o [1]
+NVIC_DisableIRQ         0x00003f0f    0x16  Code  Lc  uart.o [1]
+NVIC_DisableIRQ         0x0000450b    0x16  Code  Lc  wdt.o [1]
+NVIC_EnableIRQ          0x00000801    0x16  Code  Lc  afe.o [1]
+NVIC_EnableIRQ          0x00003ef9    0x16  Code  Lc  uart.o [1]
+NVIC_EnableIRQ          0x000044f5    0x16  Code  Lc  wdt.o [1]
+NmiSR                   0x0000518d     0x2  Code  Wk  startup.o [1]
+PARITY0$$Base           0x0003e000           --   Gb  - Linker created -
+PARITY0$$Limit          0x0003ff00           --   Gb  - Linker created -
+PARITY1$$Base           0x0005f000           --   Gb  - Linker created -
+PARITY1$$Limit          0x0005ff80           --   Gb  - Linker created -
+PDI_Int_Handler         0x000051eb     0x2  Code  Wk  startup.o [1]
+PLL_Int_Handler         0x000051e7     0x2  Code  Wk  startup.o [1]
+Parity_Int_Handler      0x000051ed     0x2  Code  Wk  startup.o [1]
+PendSV_Handler          0x0000519b     0x2  Code  Wk  startup.o [1]
+RESERVED_VECTOR         0x000051ef     0x2  Code  Wk  startup.o [1]
+RSIGNATURE$$Base        0x000007f8           --   Gb  - Linker created -
+RSIGNATURE$$Limit       0x000007fc           --   Gb  - Linker created -
+RTC_Int_Handler         0x000051db     0x2  Code  Wk  startup.o [1]
+Random_Int_Handler      0x000051e9     0x2  Code  Wk  startup.o [1]
+Region$$Table$$Base     0x000056f0           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00005710           --   Gb  - Linker created -
+ResetCircularBuffers    0x00004033    0x2e  Code  Lc  uart.o [1]
+ResetISR                0x0000514d    0x34  Code  Wk  startup.o [1]
+SPI0_Int_Handler        0x000051a7     0x2  Code  Wk  startup.o [1]
+SPI1_Int_Handler        0x000051d9     0x2  Code  Wk  startup.o [1]
+SPIH_Int_Handler        0x000051a9     0x2  Code  Wk  startup.o [1]
+SVC_Handler             0x00005197     0x2  Code  Wk  startup.o [1]
+SetPllFreq              0x00002399    0x80  Code  Gb  system.o [1]
+SetSystemClockDivider   0x00001d8b    0xf8  Code  Gb  system.o [1]
+SetSystemClockMux       0x00001ab1   0x140  Code  Gb  system.o [1]
+StateTransitionTable    0x00005084    0xc8  Data  Lc  system.o [1]
+SysTick_Handler         0x0000519d     0x2  Code  Wk  startup.o [1]
+SystemClockSourcePowerDownIfUnused
+                        0x0000206f   0x250  Code  Gb  system.o [1]
+SystemClockSourcePowerUp
+                        0x00001fa7    0xc8  Code  Gb  system.o [1]
+SystemCoreClockUpdate   0x00001a09    0xa8  Code  Gb  system.o [1]
+SystemEnableClock       0x00001d03    0x88  Code  Gb  system.o [1]
+SystemEnableClockSource
+                        0x00001e83   0x124  Code  Gb  system.o [1]
+SystemEnterLowPowerMode
+                        0x00002419    0xda  Code  Gb  system.o [1]
+SystemExitLowPowerMode  0x00002501    0x28  Code  Gb  system.o [1]
+SystemGetClockFrequency
+                        0x00001c59    0xaa  Code  Gb  system.o [1]
+SystemInit              0x0000195d    0xac  Code  Gb  system.o [1]
+SystemTransitionClocks  0x000025b3    0xa4  Code  Gb  system.o [1]
+UART_DevData            0x20000280    0x44  Data  Lc  uart.o [1]
+UART_Int_Handler        0x00003f4b    0xe8  Code  Gb  uart.o [1]
+UART_RX_Status_Handler  0x00003f25    0x26  Code  Lc  uart.o [1]
+UPPER_FA_KEY$$Base      0x0005fff0           --   Gb  - Linker created -
+UPPER_FA_KEY$$Limit     0x0005fff4           --   Gb  - Linker created -
+USB_Control_Int_Handler
+                        0x000051cf     0x2  Code  Wk  startup.o [1]
+USB_DMA_Int_Handler     0x000051d1     0x2  Code  Wk  startup.o [1]
+USB_Wakeup_Int_Handler  0x000051cd     0x2  Code  Wk  startup.o [1]
+UsageFault_Handler      0x00005195     0x2  Code  Wk  startup.o [1]
+ValidateParams          0x00002d15   0x104  Code  Lc  dma.o [1]
+WDT_DevData             0x20000760     0x4  Data  Lc  wdt.o [1]
+WDog_Tmr_Int_Handler    0x00004697     0xa  Code  Gb  wdt.o [1]
+WRITE_PROTECT$$Base     0x0005fff4           --   Gb  - Linker created -
+WRITE_PROTECT$$Limit    0x0005fff8           --   Gb  - Linker created -
+WakeUp_Int_Handler      0x0000519f     0x2  Code  Wk  startup.o [1]
+XTAL_Int_Handler        0x000051e5     0x2  Code  Wk  startup.o [1]
+_Close_all              0x00004ecd     0xc  Code  Gb  xcloseall.o [3]
+_LitobSmall             0x00004bbf    0xce  Code  Lc  xprintfsmall.o [3]
+_PrintfSmall            0x000047ed   0x380  Code  Gb  xprintfsmall.o [3]
+_Prout                  0x00005811    0x16  Code  Gb  xprout.o [3]
+_PutcharsSmall          0x00004c8d    0x2e  Code  Lc  xprintfsmall.o [3]
+_SProut                 0x000031d3     0xa  Code  Gb  xsprout.o [3]
+__aeabi_f2iz            0x00004de1          Code  Gb  FltToS32.o [5]
+__aeabi_fmul            0x00004d09          Code  Gb  FltMul.o [5]
+__aeabi_i2f             0x00004cd9          Code  Gb  I32ToFlt.o [5]
+__aeabi_lasr            0x000046cd          Code  Gb  S64Shr.o [6]
+__aeabi_ldiv0           0x00004cc5          Code  Gb  I64DivZer.o [6]
+__aeabi_ldivmod         0x0000439d          Code  Gb  I64DivMod.o [6]
+__aeabi_uldivmod        0x000043e1          Code  Gb  I64DivMod.o [6]
+__cexit_closeall        0x00004ccb          Code  Gb  cexit.o [6]
+__checksum              0x000007fc     0x4  Data  Gb  Place holder __checksum
+__checksum0             0x0003fff8     0x4  Data  Gb  Place holder __checksum0
+__checksum1             0x0005fff8     0x4  Data  Gb  Place holder __checksum1
+__checksum_begin {Abs}  0x00000000           --   Gb  command line/config [2]
+__checksum_end {Abs}    0x000007f7           --   Gb  command line/config [2]
+__cmain                 0x000051f1          Code  Gb  cmain.o [6]
+__cstart_closeall       0x000058e0          Data  Gb  cstart_closeall.o [6]
+__dwrite                0x00005019    0x1e  Code  Gb  dwrite.o [7]
+__exit                  0x00004ed9    0x14  Code  Gb  exit.o [7]
+__iar_Memchr            0x00004e75          Code  Gb  memchr.o [6]
+__iar_Strchr            0x00004e25          Code  Gb  strchr.o [6]
+__iar_close_ttio        0x00004fad    0x2e  Code  Gb  iarttio.o [7]
+__iar_data_init3        0x00005211    0x28  Code  Gb  data_init.o [6]
+__iar_get_ttio          0x00004fdd    0x38  Code  Gb  iarttio.o [7]
+__iar_lookup_ttioh      0x00005039     0x8  Code  Gb  XShttio.o [3]
+__iar_lz77_init_single3
+                        0x00003107    0x76  Code  Gb  lz77_init_single.o [6]
+__iar_program_start     0x000058b1          Code  Gb  cstartup_M.o [6]
+__iar_sh_stdout         0x00005041    0x20  Code  Gb  iarwstd.o [7]
+__iar_sh_write          0x00005061    0x22  Code  Gb  iarwrite.o [7]
+__iar_ttio_handles      0x200002c4     0x8  Data  Lc  XShttio.o [3]
+__iar_ui2f              0x00004ced          Code  Gb  I32ToFlt.o [5]
+__iar_unaligned___aeabi_memcpy4
+                        0x0000317d          Code  Gb  ABImemcpy_unaligned.o [6]
+__iar_unaligned___aeabi_memcpy8
+                        0x0000317d          Code  Gb  ABImemcpy_unaligned.o [6]
+__iar_zero_init3        0x000055bd    0x40  Code  Gb  zero_init3.o [6]
+__low_level_init        0x0000520b     0x4  Code  Gb  low_level_init.o [3]
+__parity0               0x0003e000  0x1f00  Data  Gb  Place holder __parity0
+__parity1               0x0005f000   0xf80  Data  Gb  Place holder __parity1
+__vector_table          0x00000000   0x134  Data  Gb  startup.o [1]
+__write_buffered        0x00004eed    0xc0  Code  Gb  xxwritebuffered.o [3]
+_call_main              0x000051fd          Code  Gb  cmain.o [6]
+_exit                   0x00004cc9          Code  Gb  cexit.o [6]
+_main                   0x00005207          Code  Gb  cmain.o [6]
+aEnterMeasurementState  0x000026b1    0xf6  Code  Lc  system.o [1]
+aEnterMinimalState      0x00002661    0x50  Code  Lc  system.o [1]
+aEnterUSBLPMState       0x000028bf    0x46  Code  Lc  system.o [1]
+aEnterUSBState          0x000027ad   0x112  Code  Lc  system.o [1]
+adi_AFE_ClearInterruptSource
+                        0x000014cf    0x86  Code  Gb  afe.o [1]
+adi_AFE_EnableInterruptSource
+                        0x000013fd    0xd2  Code  Gb  afe.o [1]
+adi_AFE_EnableSoftwareCRC
+                        0x00001221     0xa  Code  Gb  afe.o [1]
+adi_AFE_ExciteChanCalAtten
+                        0x00003b5b    0xee  Code  Gb  afe_lib.o [1]
+adi_AFE_ExciteChanPowerUp
+                        0x000038e7    0x60  Code  Gb  afe_lib.o [1]
+adi_AFE_GetRcal         0x00001257    0x2e  Code  Gb  afe.o [1]
+adi_AFE_GetRtia         0x00001285    0x2e  Code  Gb  afe.o [1]
+adi_AFE_GetRxDmaComplete
+                        0x00000d5f    0x62  Code  Gb  afe.o [1]
+adi_AFE_GetSeqFinished  0x00000d0d    0x52  Code  Gb  afe.o [1]
+adi_AFE_HandleNotInitialized
+                        0x00001245    0x12  Code  Gb  afe.o [1]
+adi_AFE_Init            0x000012bd    0xc6  Code  Gb  afe.o [1]
+adi_AFE_InvalidHandle   0x0000122b    0x16  Code  Gb  afe.o [1]
+adi_AFE_PowerDown       0x00003c49    0x7c  Code  Gb  afe_lib.o [1]
+adi_AFE_PowerUp         0x00003889    0x5e  Code  Gb  afe_lib.o [1]
+adi_AFE_ProgramRxDMA    0x00000c0f    0x94  Code  Gb  afe.o [1]
+adi_AFE_ProgramTxDMA    0x00000b7f    0x90  Code  Gb  afe.o [1]
+adi_AFE_RunSequence     0x00001089   0x18a  Code  Gb  afe.o [1]
+adi_AFE_SeqAbort        0x00000f89    0x6c  Code  Gb  afe.o [1]
+adi_AFE_SeqCheck        0x00000ff5    0x84  Code  Gb  afe.o [1]
+adi_AFE_SeqInit         0x00000dc1    0xf4  Code  Gb  afe.o [1]
+adi_AFE_SeqStart        0x00000eb5    0x5e  Code  Gb  afe.o [1]
+adi_AFE_SeqStop         0x00000f13    0x76  Code  Gb  afe.o [1]
+adi_AFE_SetSwitchState  0x000008f7    0x52  Code  Gb  afe.o [1]
+adi_AFE_TiaChanCal      0x00003947   0x214  Code  Gb  afe_lib.o [1]
+adi_AFE_TiaChanDacCode  0x00003d19    0x72  Code  Gb  afe_lib.o [1]
+adi_AFE_UnInit          0x00001383    0x7a  Code  Gb  afe.o [1]
+adi_AFE_WriteCalibrationRegister
+                        0x00000949    0x6c  Code  Gb  afe.o [1]
+adi_DMA_Init            0x000029a5   0x158  Code  Gb  dma.o [1]
+adi_DMA_ReSubmit        0x00002ca5    0x70  Code  Gb  dma.o [1]
+adi_DMA_SubmitTransfer  0x00002b6f   0x136  Code  Gb  dma.o [1]
+adi_DMA_UnInit          0x00002afd    0x72  Code  Gb  dma.o [1]
+adi_GPIO_ClearIRQ       0x00002e6d    0x36  Code  Gb  gpio.o [1]
+adi_GPIO_Device         0x20000660    0x5c  Data  Lc  gpio.o [1]
+adi_GPIO_GetOutputEnable
+                        0x00002f53    0x2a  Code  Gb  gpio.o [1]
+adi_GPIO_GetPullUpEnable
+                        0x00002f7d    0x28  Code  Gb  gpio.o [1]
+adi_GPIO_SetInputEnable
+                        0x00002ea3    0x58  Code  Gb  gpio.o [1]
+adi_GPIO_SetPullUpEnable
+                        0x00002efb    0x58  Code  Gb  gpio.o [1]
+adi_UART_Enable         0x00004205    0x48  Code  Gb  uart.o [1]
+adi_UART_Init           0x00004061    0xb4  Code  Gb  uart.o [1]
+adi_UART_SetBaudRate    0x0000415b    0xaa  Code  Gb  uart.o [1]
+adi_UART_UnInit         0x00004115    0x46  Code  Gb  uart.o [1]
+adi_WDT_Init            0x00004521    0x94  Code  Gb  wdt.o [1]
+adi_WDT_ResetTimer      0x0000464f    0x48  Code  Gb  wdt.o [1]
+adi_WDT_SetEnable       0x000045e7    0x68  Code  Gb  wdt.o [1]
+adi_WDT_UnInit          0x000045b5    0x32  Code  Gb  wdt.o [1]
+adi_initpinmux          0x00003879    0x10  Code  Gb  PinMux.o [1]
+arctan                  0x0000343d    0xe4  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+arm_cmplx_mag_q31       0x00003d8d   0x11a  Code  Gb  arm_cmplx_mag_q31.o [4]
+arm_mult_q15            0x00004269    0x8e  Code  Gb  arm_mult_q15.o [4]
+arm_q15_to_q31          0x000042f9    0xa2  Code  Gb  arm_q15_to_q31.o [4]
+arm_sqrt_q31            0x000046f1    0xfc  Code  Gb  arm_sqrt_q31.o [4]
+calculate_magnitude     0x000035a9    0x62  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+calculate_phase         0x0000360b    0x2a  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+changeClockDividers     0x00002905    0x3c  Code  Lc  system.o [1]
+coeff                   0x000058a4     0xc  Data  Gb  ImpedanceMeasurement_2Wire.o [1]
+convert_dft_results     0x00003521    0x88  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+crc8                    0x00000ca3    0x40  Code  Lc  afe.o [1]
+currentState            0x20000766     0x1  Data  Lc  system.o [1]
+dmaDisable              0x00000acb    0x62  Code  Lc  afe.o [1]
+dmaEnable               0x00000a5b    0x70  Code  Lc  afe.o [1]
+dmaInit                 0x000009b5    0xa6  Code  Lc  afe.o [1]
+dmaUnInit               0x00000b2d    0x52  Code  Lc  afe.o [1]
+exit                    0x000046c9     0x4  Code  Gb  exit.o [3]
+fifoDisable             0x00000899    0x5e  Code  Lc  afe.o [1]
+fifoEnable              0x0000082d    0x6c  Code  Lc  afe.o [1]
+gChannelControlDataArray
+                        0x20000400   0x200  Data  Lc  dma.o [1]
+gDmaDescriptorForAFERx  0x20000728    0x18  Data  Lc  afe.o [1]
+gDmaDescriptorForAFETx  0x20000710    0x18  Data  Lc  afe.o [1]
+gWdtStaticInitData      0x000058cc     0x8  Data  Lc  wdt.o [1]
+gpioClock               0x2000075c     0x4  Data  Lc  system.o [1]
+hUartDevice             0x20000750     0x4  Data  Gb  ImpedanceMeasurement_2Wire.o [1]
+hfClock                 0x20000758     0x4  Data  Lc  system.o [1]
+isLfClkUsed             0x00002535    0x46  Code  Lc  system.o [1]
+lfClock                 0x20000754     0x4  Data  Lc  system.o [1]
+main                    0x000031dd   0x260  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+memchr                  0x00004e75          Code  Gb  memchr.o [6]
+multiplex_AFE           0x00003747    0x20  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+pAFE_DevData            0x000058d4     0x4  Data  Lc  afe.o [1]
+pAlternateCCD           0x20000004     0x4  Data  Lc  dma.o [1]
+pDMA_DevData            0x000058d8     0x4  Data  Lc  dma.o [1]
+pPrimaryCCD             0x20000000     0x4  Data  Lc  dma.o [1]
+printf                  0x000044d1    0x24  Code  Gb  printf.o [3]
+privateIntOccFlag       0x20000765     0x1  Data  Lc  system.o [1]
+putchar                 0x0000565d    0x28  Code  Gb  putchar.o [3]
+quit                    0x0000386d     0xa  Code  Lc  test_common.o [1]
+scaleTimeout            0x00002595    0x1e  Code  Lc  system.o [1]
+seq_afe_excitechancalatten1
+                        0x00005634    0x28  Data  Gb  afe_lib.o [1]
+seq_afe_excitechancalatten2
+                        0x0000576c    0x1c  Data  Gb  afe_lib.o [1]
+seq_afe_excitechanpowerup
+                        0x0000583c    0x10  Data  Gb  afe_lib.o [1]
+seq_afe_mux1            0x20000008   0x26c  Data  Gb  ImpedanceMeasurement_2Wire.o [1]
+seq_afe_powerup         0x00005684    0x24  Data  Gb  afe_lib.o [1]
+seq_afe_tiachancal1     0x000056a8    0x24  Data  Gb  afe_lib.o [1]
+seq_afe_tiachancal2     0x00005710    0x20  Data  Gb  afe_lib.o [1]
+seq_afe_tiachancal3     0x00005730    0x20  Data  Gb  afe_lib.o [1]
+seq_afe_tiachancal4     0x000056cc    0x24  Data  Gb  afe_lib.o [1]
+seq_afe_tiachancal5     0x00005750    0x1c  Data  Gb  afe_lib.o [1]
+sequenceCRC             0x00000ce3    0x2a  Code  Lc  afe.o [1]
+sprintf                 0x00003ea9    0x34  Code  Gb  sprintf.o [3]
+sprintf_fixed32         0x00003635    0xa6  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+store                   0x200006bc    0x50  Data  Lc  xxwritebuffered.o [3]
+storeLen                0x2000070c     0x4  Data  Lc  xxwritebuffered.o [3]
+strcat                  0x00003edd    0x1c  Code  Gb  strcat.o [3]
+strchr                  0x00004e25          Code  Gb  strchr.o [6]
+strlen                  0x00004e3d          Code  Gb  strlen.o [6]
+test_Fail               0x00003821    0x32  Code  Gb  test_common.o [1]
+test_Init               0x000037cd    0x38  Code  Gb  test_common.o [1]
+test_Pass               0x00003805    0x1c  Code  Gb  test_common.o [1]
+test_print              0x000036e9     0xc  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+uart_Init               0x000036f5    0x52  Code  Gb  ImpedanceMeasurement_2Wire.o [1]
+
+
+[1] = C:\Users\jean\Desktop\EITCODE\C\iar\Debug\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = iar_cortexM3l_math.a
+[5] = m7M_tl.a
+[6] = rt7M_tl.a
+[7] = shb_l.a
+
+  18 936 bytes of readonly  code memory
+  14 203 bytes of readonly  data memory
+   2 631 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
