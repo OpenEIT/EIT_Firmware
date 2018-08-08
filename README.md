@@ -12,7 +12,7 @@ Then a good start is to download the documentation for the main MCU - the ADuCM3
 This is a link to where to download the examples/software and documentation. 
 http://www.analog.com/en/products/processors-dsp/microcontrollers/precision-microcontrollers/aducm350.html
 
-# Getting started 
+# Firmware for different things! 
 
 To get started, run the IAR Workspace OpenEIT inside the IAR folder: 
 
