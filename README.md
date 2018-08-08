@@ -2,6 +2,8 @@
 # Intro
 Firmware! Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? 
 
+If you just want to download pre-compiled firmware HEX files, then the HEX file folder is for you. This will let you try out different features and methods in EIT and Bioimpedance Spectroscopy. If you want to go a bit deeper and edit the files and re-compile, read the directions below. 
+
 # Getting set up
 I installed windows through VMWare and it works great. Then I installed IAR Systems IDE and plugged in my trusty Segger J-Link Debugger that enables you to do SWD firmware programming. 
 
