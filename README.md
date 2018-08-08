@@ -1,7 +1,16 @@
 
-# Getting started 
+# Intro
+Firmware! It would be excellent if this didn't have to run on windows, but currently it does as I started with the Analog Devices examples and worked from that basepoint. If someone wants to make it compile on OSX, that'd be neat. 
 
-There are several examples contained inside this folder. 
+# Getting set up
+I installed windows through VMWare and it works great. Then I installed IAR Systems IDE and plugged in my trusty Segger J-Link Debugger that enables you to do SWD firmware programming. 
+
+Then a good start is to download the documentation for the main MCU - the ADuCM350. Then I'd recommend you install their examples onto the board to make sure you can do that by following their instructions. Once you can do that you'll be equipped to try out the other firmware listed below: 
+
+This is a link to where to download the examples/software and documentation. 
+http://www.analog.com/en/products/processors-dsp/microcontrollers/precision-microcontrollers/aducm350.html
+
+# Getting started 
 
 To get started, run the IAR Workspace OpenEIT inside the IAR folder: 
 
