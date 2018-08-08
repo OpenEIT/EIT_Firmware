@@ -1,6 +1,6 @@
 
 # Intro
-Firmware! It would be excellent if this didn't have to run on windows, but currently it does as I started with the Analog Devices examples and worked from that basepoint. If someone wants to make it compile on OSX, that'd be neat. 
+Firmware! Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? 
 
 # Getting set up
 I installed windows through VMWare and it works great. Then I installed IAR Systems IDE and plugged in my trusty Segger J-Link Debugger that enables you to do SWD firmware programming. 
