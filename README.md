@@ -1,3 +1,34 @@
+
+# Getting started 
+
+There are several examples contained inside this folder. 
+
+To get started, run the IAR Workspace OpenEIT inside the IAR folder: 
+
+You can select between a range of different programs to run and below there are short descriptions of each. To switch simply drag the C file for main and remove the previous one from the workspace and recompile.  
+
+* ImpedanceMeasurement_timeseries_2Wire: Performs time series measurements with AFE7 and AFE8. 
+* ImpedanceMeasurement_timeseries_4WireBioIsolated: Performs time series measurements using a tetrapolar common mode rejection configuraiton. 
+* ImpedanceMeasurement_BIS_4WireBioIsolated_multifrequency: Does time series BIS taking a spectrum with 15 measurements between 80Hz and 80kHz. Uses AFE7,8 and a differential op amp configuration on the board. 
+
+* ImpedanceMeasurement_EIT8_bipolar: Runs through 28 measurements to do tomographic reconstruction of a bipolar system. 
+* ImpedanceMeasurement_EIT8_bipolar_multifrequency: Create a spectrum for every pixel in an 8 electrode tomographic reconstruction. 
+* ImpedanceMeasurement_EIT32_4WireBioIsolated: Takes 928 measurements in tetrapolar mode, to do the highest spatial resolution construction. 
+* ImpedanceMeasurement_EIT32_bipolar: takes 928 measurements in a bipolar configuration. 
+
+
+To Download onto device: 
+Hit build, and if it builds without errors a HEX file will be contained in the 
+iar/debug/exe folder. Ensure your device is plugged in via a SWD programmer then run the .bat file to program. 
+Your device should now be running the firmware. 
+
+To check that your device is operating the firmware correctly, open a realterm or coolterm prompt and create a serial connection with the device. You should see readings coming through the serial port. If everything looks good, it's time to go to the EIT dashboard to have a look and the data and do some experiments! 
+
+A note on which debugger to use: 
+- I recommend using a Segger J-link debugger with SWD programming cable. The configuration on the PCB also allows for the VCOM port to work which means you can also read serial through the same connection. The specific configuration can be seen in the .bat file contained in the EXE directory. 
+
+
+
 # EIT_Firmware
 
 This is an example for 2-wire impedance measurement, across 28 different arrangements of electrodes described by the EIT PCB.
