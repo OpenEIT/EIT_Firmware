@@ -488,7 +488,6 @@ extern ADI_GPIO_CONFIG_TYPE  adi_GPIO_RetrievePinMuxing        (const ADI_GPIO_P
 extern ADI_GPIO_RESULT_TYPE  adi_GPIO_EnableIRQ                (const IRQn_Type eIrq, const ADI_GPIO_IRQ_TRIGGER_CONDITION_TYPE eCondition);        /*!< Enables an external GPIO interrupt */
 extern ADI_GPIO_RESULT_TYPE  adi_GPIO_DisableIRQ               (const IRQn_Type eIrq);                                                              /*!< Disables an external GPIO interrupt */
 extern ADI_GPIO_RESULT_TYPE  adi_GPIO_ClearIRQ                 (const IRQn_Type eIrq);                                                              /*!< Clears an external interrupt */
-
 extern ADI_GPIO_RESULT_TYPE  adi_GPIO_RegisterCallback         (const IRQn_Type eIrq, ADI_CALLBACK const pfCallback, void *const pCBParam );  /*!< Registers a callback for external interrupt */
 
 /* ADuCM350 adds pin interrupts with Group A/B mask registers for each port... all of which land in either of two (Group A/B) interrupts) */

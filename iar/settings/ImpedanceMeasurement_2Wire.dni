@@ -14,7 +14,7 @@ TraceBufferSize=0x00010000
 TraceStallIfFIFOFull=0x00000000
 TracePortSize=0x00000004
 [DebugChecksum]
-Checksum=-256653609
+Checksum=85296277
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -41,6 +41,61 @@ ITMportsEnable=0
 ITMportsTermIO=0
 ITMportsLogFile=0
 ITMlogFile=$PROJ_DIR$\ITM.log
+[CallStackStripe]
+ShowTiming=1
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[PowerLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=0
+Title0=I0
+Symbol0=0 4 1
+LiveEnabled=0
+LiveFile=PowerLogLive.log
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[EventLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+Title0=Ch0
+Symbol0=0 4 1
+Title1=Ch1
+Symbol1=0 4 1
+Title2=Ch2
+Symbol2=0 4 1
+Title3=Ch3
+Symbol3=0 4 1
+SumSortOrder=0
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 1
+LogFile=_ "$PROJ_DIR$\TermIO.log"
 [Trace1]
 Enabled=0
 ShowSource=1
@@ -56,57 +111,23 @@ EventEXC=0
 EventFOLD=0
 EventLSU=0
 EventSLEEP=0
-[DataLog]
-LogEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-SumEnabled=0
-ShowTimeSum=1
-[EventLog]
-Title_0=Ch3
-Symbol_0=0 4 1
-Title_1=Ch2
-Symbol_1=0 4 1
-Title_2=Ch1
-Symbol_2=0 4 1
-Title_3=Ch0
-Symbol_3=0 4 1
-LogEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-SumEnabled=0
-ShowTimeSum=1
-SumSortOrder=0
-[InterruptLog]
-LogEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-SumEnabled=0
-ShowTimeSum=1
-SumSortOrder=0
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 1
-LogFile=_ "$PROJ_DIR$\TermIO.log"
+[PowerProbe]
+Frequency=10000
+Probe0=I0
+ProbeSetup0=2 1 1 2 0 0
+[CallStackLog]
+Enabled=0
 [DriverProfiling]
 Enabled=0
 Mode=1
 Graph=0
 Symbiont=0
 Exclusions=
-[CallStackLog]
-Enabled=0
-[CallStackStripe]
-ShowTiming=1
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Bp0=_ 0 "STD_LOG2" "{$PROJ_DIR$\..\ImpedanceMeasurement_2Wire.c}.387.1" "" 1 "" 0 0 0
-Bp1=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\ImpedanceMeasurement_2Wire.c}.387.5" 0 0 1 "" 0 "" 0
-Count=2
+Bp0=_ 0 "STD_LOG2" "{$PROJ_DIR$\..\ImpedanceMeasurement_2Wire.c}.413.9" "" 1 "" 0 0 0
+Count=1
 [Aliases]
 Count=0
 SuppressDialog=0

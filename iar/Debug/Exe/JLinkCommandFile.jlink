@@ -1,0 +1,7 @@
+connect
+r
+erase
+r
+loadfile C:\Users\jeantoul\Desktop\EIT_32\firmware_timeseries\iar\Debug\Exe\ImpedanceMeasurement_bioisolated.hex
+r
+exit

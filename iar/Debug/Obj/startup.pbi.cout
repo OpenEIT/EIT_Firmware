@@ -1,37 +1,32 @@
-"C:\Users\jean\Desktop\EITCODE\C\src\startup.c"
+"C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\src\startup.c"
 -std=c99
 -ferror-limit=100
 -I
-C:\Users\jean\Desktop\EITCODE\C\iar\..
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\..
 -I
-C:\Users\jean\Desktop\EITCODE\C\iar\..\src
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\..\src
 -I
-C:\Users\jean\Desktop\EITCODE\C\iar\..\inc
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\..\inc
 -I
-C:\Users\jean\Desktop\EITCODE\C\iar\..\inc\config
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\..\inc\config
 -I
-C:\Users\jean\Desktop\EITCODE\C\iar\..\tools
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\..\tools
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\arm\inc
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\inc
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\arm\inc\c
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\inc\c
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware
 -I
-C:\Users\jean\Desktop\EITCODE\C
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\src
 -I
-C:\Users\jean\Desktop\EITCODE\C\src
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\inc
 -I
-C:\Users\jean\Desktop\EITCODE\C\inc
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\inc\config
 -I
-C:\Users\jean\Desktop\EITCODE\C\inc\config
--I
-C:\Users\jean\Desktop\EITCODE\C\tools
--I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
--DADI_DEBUG=1
--DADI_SYSTEM_CLOCK_TRANSITION=1
--DARM_MATH_CM3=1
+C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\tools
+-DADI_SYSTEM_CLOCK_TRANSITION=0
+-DADI_DEBUG=0
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0
@@ -170,19 +165,18 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
 -D__JMP_BUF_ELEMENT_TYPE__=unsigned long long int
 -D__JMP_BUF_NUM_ELEMENTS__=8
 -D__TID__=0xcf60
--D__VER__=7050001
--D__BUILD_NUMBER__=10123
+-D__VER__=6050003
+-D__BUILD_NUMBER__=4676
 -D__IAR_SYSTEMS_ICC__=8
+-D__VA_STACK_DECREASING__=1
+-D__VA_STACK_ALIGN__=4
+-D__VA_STACK_ALIGN_EXTRA_BEFORE__=0
 -D__LITTLE_ENDIAN__=1
 -D__BOOL_TYPE__=unsigned char
--D__BOOL_SIZE__=1
 -D__WCHAR_T_TYPE__=unsigned short int
 -D__WCHAR_T_SIZE__=2
 -D__WCHAR_T_MAX__=0xffff
 -D__DEF_PTR_MEM__=__data
--D__DEF_PTR_SIZE__=4
--D__CODE_MEMORY_LIST3__(_P1,_P2)=__CODE_MEM_HELPER3__(__code, 0, _P1, _P2)
--D__DATA_MEMORY_LIST3__(_P1,_P2)=__DATA_MEM_HELPER3__(__data, 0, _P1, _P2)
 -D__DATA_MEM0__=__data
 -D__DATA_MEM0_POINTER_OK__=1
 -D__DATA_MEM0_UNIQUE_POINTER__=1
@@ -198,16 +192,11 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
 -D__CODE_MEM0_POINTER_OK__=1
 -D__CODE_MEM0_UNIQUE_POINTER__=1
 -D__CODE_MEM0_VAR_OK__=1
--D__CODE_PTR_MEMORY_LIST3__(_P1,_P2)=__CODE_PTR_MEM_HELPER3__(__code, 0, _P1, _P2)
--D__DATA_PTR_MEMORY_LIST3__(_P1,_P2)=__DATA_PTR_MEM_HELPER3__(__data, 0, _P1, _P2)
--D__VAR_MEMORY_LIST3__(_P1,_P2)=__VAR_MEM_HELPER3__(__data, 0, _P1, _P2)
 -D__HEAP_MEM0__=0
--D__HEAP_MEMORY_LIST3__(_P1,_P2)=__HEAP_MEM_HELPER3__(__data, 0, _P1, _P2)
 -D__MULTIPLE_HEAPS__=0
--D__TOPM_DATA_MEMORY_LIST3__(_P1,_P2)=
--D__TOPP_DATA_MEMORY_LIST3__(_P1,_P2)=__TOPP_DATA_MEM_HELPER3__(__data, 0, _P1, _P2)
 -D__DEF_HEAP_MEM__=__data
 -D__PRAGMA_PACK_ON__=1
+-D__C99_BOOL__=1
 -D__MULTIPLE_INHERITANCE__=1
 -D__AAPCS__=1
 -D__ARM4TM__=4
@@ -231,18 +220,18 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
 -D__HAS_JOINED_TYPES__=1
 -D__HAS_LOCATED_DECLARATION__=1
 -D__HAS_LOCATED_WITH_INIT__=1
--D__IAR_COMPILERBASE__=594444
+-D__IAR_COMPILERBASE__=593160
+-D__DATE__="Aug  8 2018"
+-D__TIME__="11:31:21"
 -D__STDC__=1
 -D__STDC_VERSION__=199901L
 -D__STDC_HOSTED__=1
--D__STDC_NO_VLA__=1
--D__STDC_NO_ATOMICS__=1
 -D__EDG_IA64_ABI=1
 -D__EDG_IA64_ABI_VARIANT_CTORS_AND_DTORS_RETURN_THIS=1
 -D__EDG_IA64_ABI_USE_INT_STATIC_INIT_GUARD=1
 -D__EDG_TYPE_TRAITS_ENABLED=1
 -D__EDG__=1
--D__EDG_VERSION__=409
+-D__EDG_VERSION__=403
 -D__EDG_SIZE_TYPE__=unsigned int
 -D__EDG_PTRDIFF_TYPE__=int
 -D__EDG_DELTA_TYPE=int
@@ -257,10 +246,12 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
 -D__EDG_BSD=0
 -D__EDG_SYSV=0
 -D__EDG_ANSIC=1
--D__EDG_CPP11_IL_EXTENSIONS_SUPPORTED=1
--D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\INC\c\DLib_Config_Normal.h"
--D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.3\\arm\\INC\\c\\DLib_Config_Normal.h"
--D__VERSION__="IAR ANSI C/C++ Compiler V7.50.1.10123/W32 for ARM"
+-D__EDG_CPP0X_IL_EXTENSIONS_SUPPORTED=1
+-DADI_SYSTEM_CLOCK_TRANSITION=1
+-DADI_DEBUG=1
+-D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Normal.h"
+-D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 6.5\\arm\\INC\\c\\DLib_Config_Normal.h"
+-D__VERSION__="IAR ANSI C/C++ Compiler V6.50.3.4676/W32 for ARM"
 -D__CODE_MEMORY_LIST1__()=__CODE_MEM_HELPER1__(__code, 0 )
 -D__CODE_MEMORY_LIST2__(_P1)=__CODE_MEM_HELPER2__(__code, 0 ,  _P1 )
 -D__CODE_MEMORY_LIST3__(_P1, _P2)=__CODE_MEM_HELPER3__(__code, 0 ,  _P1 ,  _P2 )

@@ -103,7 +103,7 @@ ADI_AFE_RESULT_TYPE adi_AFE_AuxChanCal(ADI_AFE_DEV_HANDLE const hDevice) {
     result = adi_AFE_RunSequence(hDevice, seq_afe_auxchancal, rxBuffer, 2);
 
     if (!result) {
-
+        
         /* Performing 2-point calibration                                               */
         /* gain = 2^15 / (rxBuffer[1] - rxBuffer[0])                                    */
         /* offset = -20025 / gain - (rxBuffer[0] - 32768)                               */

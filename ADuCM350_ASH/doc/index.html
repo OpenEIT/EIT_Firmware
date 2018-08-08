@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>AFE Sequence Helper Documentation</title>
+    <meta name="generator" content="LibreOffice 4.2.3.3 (Linux)">
+    <meta name="created" content="20140416;20605336646502">
+    <meta name="changed" content="20140416;21009639298832">
+    <style type="text/css">
+	<!--
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; line-height: 120% }
+		a:link { so-language: zxx }
+	-->
+	</style>
+  </head>
+  <body dir="ltr" lang="en-IE">
+    <div title="header">
+      <h1 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH1" id="mozTocId112122"></a>ADuCM350
+        AFE Sequence Helper</h1>
+      <ul id="mozToc">
+        <!--mozToc h2 1 h3 2 h4 3-->
+        <li><a href="#mozTocId368753">Introduction</a></li>
+        <li><a href="#mozTocId950262">User Interface</a>
+          <ul>
+            <li><a href="#mozTocId897154">Command Selection</a></li>
+            <li><a href="#mozTocId505853">Write Command Parameters</a></li>
+            <li><a href="#mozTocId405345">Wait/Timeout Command Parameters</a></li>
+            <li><a href="#mozTocId81543">Sequencer Hex Command</a></li>
+            <li><a href="#mozTocId251629">Sequencer Command View</a></li>
+            <li><a href="#mozTocId496053">Register Field List</a></li>
+            <li><a href="#mozTocId715923">Register And Bitfield Documentation</a></li>
+            <li><a href="#mozTocId666997">Additional Controls</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId355314">Sequence Development</a>
+          <ul>
+            <li><a href="#mozTocId354401">Write Command</a>
+              <ul>
+                <li><a href="#mozTocId780790">Voltage Input</a></li>
+                <li><a href="#mozTocId621583">Time Input</a></li>
+                <li><a href="#mozTocId12472">Frequency Input</a></li>
+                <li><a href="#mozTocId235294">Phase Input</a></li>
+                <li><a href="#mozTocId187790">Default Input</a></li>
+                <li><a href="#mozTocId449377">Comments</a></li>
+              </ul>
+            </li>
+            <li><a href="#mozTocId357284">Wait Command</a></li>
+            <li><a href="#mozTocId233998">Timeout Command</a></li>
+            <li><a href="#mozTocId172773">Comments</a></li>
+          </ul>
+        </li>
+        <li><a href="#mozTocId117549">Getting Help</a></li>
+      </ul>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><br>
+      </p>
+      <h2 style="   margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH2"
+          id="mozTocId368753"></a>Introduction</h2>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><br>
+      </p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">The ADuCM350 AFE
+        Sequence Helper tool is provided to ease the development and debug of
+        AFE sequences.</p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">The main features are:</p>
+      <ul>
+        <li>support for all AFE sequencer commands: Write, Wait, Timeout</li>
+        <li>AFE sequencer hex code generation</li>
+        <li>decoding of AFE sequencer hex commands</li>
+        <li>easy navigation of AFE register map</li>
+        <li>integrated help for AFE registers and bitfields</li>
+      </ul>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><br>
+      </p>
+      <h2 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH2" id="mozTocId950262"></a>User
+        Interface</h2>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><br>
+      </p>
+      <img title="User Interface " alt="" src="img/window_annotated.png"><br>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId897154"></a>Command
+        Selection</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">This is used to select
+        the current command. The current command determines the configuration of
+        the other user interface elements.</p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">The controls included
+        in "Write Command Parameters" and "Wait/Timeout Command Parameters" are
+        enabled/disabled according to the currently selected command.</p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId505853"></a>Write
+        Command Parameters</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">Two controls are
+        provided to help with the Write command customization:</p>
+      <ul>
+        <li><span style="font-weight: bold;">Register</span>: list of all the
+          AFE registers that are mapped within the sequencer address range, in
+          alphabetical order.</li>
+        <ul>
+          <li>Selecting a register from the list changes the current view to
+            display the selected register</li>
+          <li>Note: this list also includes read-only registers, or registers
+            that cannot be written by the sequencer. </li>
+        </ul>
+        <li><strong>Field</strong>: list of all the AFE bitfields that belong to
+          the registers listed in the "Register" list, in alphabetical order.</li>
+        <ul>
+          <li>Selecting a bitfield from the list changes the current view to
+            display the register that contains the selected bitfield</li>
+          <li>Note: this list also includes read-only bitfields, or birfields
+            that cannot be written by the sequencer.</li>
+        </ul>
+      </ul>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a><br>
+      </p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId405345"></a>Wait/Timeout
+        Command Parameters<a name="WaitTimeoutCommandParameters"></a></h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">The controls are shared
+        between Wait and Timeout commands, and are made of:</p>
+      <ul>
+        <li><span style="font-weight: bold;">Time</span>: the magnitude of the
+          wait/timeout value, expressed as a multiple of "Unit". This can be an
+          integer number of ACLK periods, or a real number of
+          microseconds/milliseconds.</li>
+        <li><strong>Unit</strong>: the choice is between ACLK periods (62.5ns
+          each), microseconds and milliseconds. </li>
+      </ul>
+      Note that if the time value entered is not an integer multiple of ACLK
+      periods, it is automatically adjusted to an integer multiple of ACLK
+      periods. This is to maintain consistency with the hardware sequencer.<br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId81543"></a>Sequencer
+        Hex Command</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">This is the hex
+        representation of the current command. It is always shown as an 8-digit
+        hex value.</p>
+      It can also function as input: if a new value is entered, the tool will
+      automatically determine the command type and switch to it. The relevant
+      parameters will also by brought in sync with the new hex command entered.<br>
+      <br>
+      This element serves a dual purpose:<br>
+      <ul>
+        <li><strong>Sequence development</strong>: once a sequencer command has
+          been configured using the other graphical controls, the hex code shown
+          in this field can be copy&amp;pasted into a C array</li>
+        <li><strong>Sequence debug</strong>: an existing hex code can be entered
+          into this field to obtain a simple "disassembled" view</li>
+      </ul>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId251629"></a>Sequencer
+        Command View</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">Shows the full 32 bits
+        of the sequencer command currently selected.</p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">The bits that are
+        greyed out cannot be modified. Those can be one:</p>
+      <ul>
+        <li>MMR read-only bits (including reserved bits)</li>
+        <li>MMR bits that cannot be written by the sequencer</li>
+        <li>non-MMR bits needed by the sequencer, e.g. command bits</li>
+      </ul>
+      The sequencer command view is also used to configure the commands:<br>
+      <ul>
+        <li><strong>Write</strong>: configure the contents of MMR bitfields</li>
+        <li><strong>Wait/Timeout</strong>: configure the time value</li>
+      </ul>
+      The configuration is done using the mouse:<br>
+      <ul>
+        <li><strong>Left-Click</strong>: toggle the value of the bit. This is
+          most useful for bitfields made of single bits, such as enable bits.</li>
+        <li><strong>Right-Click</strong>: opens up a dialog window that allows
+          entering a new value for the current bitfield. This is most useful for
+          bitfields of larger widths, such as time values. A more detailed
+          explanation is provided later in the document.</li>
+      </ul>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId496053"></a>Register
+        Field List</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">This is a list of all
+        bitfields in the current register.<br>
+      </p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId715923"></a>Register
+        And Bitfield Documentation<br>
+      </h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">Shows the documentation
+        for the current register and current bitfield. Except for minor fixes
+        and clarifications, it is the documentation included in the ADuCM350
+        Users Guide.<br>
+      </p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId666997"></a>Additional
+        Controls</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">In addition, the
+        application contains:</p>
+      <ul>
+        <li><span style="color: #0000ee;"><span style="text-decoration: underline;"></span></span><strong>Status
+            Bar</strong>: used to display application messages (information
+          messages, warnings and errors).</li>
+        <li><span style="font-weight: bold;">Menu</span>:</li>
+        <ul>
+          <li>File -&gt; Load AFE State...: load the AFE MMR states from a file
+            in JSON format (default extension is ".afestate"). This file can be
+            modified manually, but it is strongly recommended to configure the
+            desired MMR state using the AFE Sequence Helper tool, then save it
+            from "File-&gt;Save AFE State..."</li>
+          <li>File -&gt; Save AFE State...: save the currently configured AFE
+            MMR state to file. Counterpart to the "Load AFE State" command
+            described above.</li>
+          <li>File -&gt; Reset AFE State...:resets all AFE MMR values to their
+            default (reset) values.</li>
+          <li>File -&gt; Exit: exit the application</li>
+          <li>View: show/hide UI elements</li>
+          <li>Help -&gt; Documentation: this document</li>
+          <li>Help -&gt; Check for updates: check if a new version of the tool
+            is available. If a new version is found, a download link is provided</li>
+          <li>Help -&gt; About: shows the tool version</li>
+        </ul>
+      </ul>
+      <p><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"> </p>
+      <h2 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH2" id="mozTocId355314"></a>Sequence
+        Development</h2>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId354401"></a>Write
+        Command</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">The MMR contents are
+        initialized with the default reset values. Once initialized, the values
+        are stored internally by the tool, and once a register contents are
+        modified, re-selecting the register will restore the last modified
+        value. The MMR contents are not persistent between sessions.</p>
+      Left-clicking a bit in the Sequencer Command View toggles the bit value.
+      This is convenient for bitfields with a width of 1-2 bits, e.g. enable
+      bits, but it becomes cumbersome for larger widths. For those, a second
+      method of entering values is provided, accessible by right-clicking the
+      bitfield in the Sequencer Command View.
+      <p style="margin-bottom: 0.5cm; line-height: 100%">This brings up a dialog
+        window that exposes settings dependent of the bitfield type:</p>
+      <ul>
+        <li>Voltage</li>
+        <ul>
+          <li>TRAP_DC_LEVEL_1</li>
+          <li>TRAP_DC_LEVEL_2</li>
+          <li>SINE_OFFSET</li>
+          <li>SINE_AMPLITUDE</li>
+          <li>DAC_CODE</li>
+        </ul>
+        <li>Time</li>
+        <ul>
+          <li>TRAP_DELAY_1</li>
+          <li>TRAP_DELAY_2</li>
+          <li>TRAP_SLOPE_1</li>
+        </ul>
+        <li>Frequency</li>
+        <ul>
+          <li>SINE_FCW</li>
+        </ul>
+        <li>Phase</li>
+        <ul>
+          <li>SINE_PHASE_OFFSET</li>
+        </ul>
+      </ul>
+      <br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h4><a class="mozTocH4" id="mozTocId780790"></a>Voltage Input</h4>
+      An example voltage input dialog is shown below:<br>
+      <br>
+      <img title="Voltage Input" alt="Voltage Input" src="img/voltage_input.png"><br>
+      <br>
+      The main components are:<br>
+      <ul>
+        <li><strong>Field Value</strong>: this is the decimal value of the
+          bitfield. It is initialized with the current bitfield value.</li>
+        <li><strong>Voltage (mV)</strong>: voltage expressed in millivolts. It
+          is calculated from the field value, taking into account the
+          enabled/disabled state of the attenuator ("Attenuation" checkbox).</li>
+        <li><strong>Attenuation</strong>: attenuator state (enabled/disabled).
+          It is used for converting from voltage to decimal, and from decimal to
+          voltage. This checkbox is initialized from the value of DAC_ATTEN_EN.
+          Checking/unchecking the control does not affect the value of the
+          DAC_ATTEN_EN bit.</li>
+      </ul>
+      When a new value is entered in the "Field Value" box, the "Voltage (mV)"
+      will be updated according to the "Attenuation" setting. Conversely, if a
+      new value is entered in the "Voltage (mV)" box, "Field Value" will be
+      updated. The calculation of the updated value uses the "Attenuation"
+      setting, and happens when clicking the "Apply" button, or simply when the
+      modified input box loses focus.<br>
+      <br>
+      If conversion of a new voltage value entered does not result in an integer
+      value of the bitfield, the bitfield value is truncated to an integer
+      value. The voltage value is then adjusted to match the integer bitfield
+      value. This is required to match the hardware sequencer implementation.<br>
+      <br>
+      <span style="font-style: italic;">Important: because of finite precision,
+        updating the decimal and voltage values sequentially from each other
+        multiple times without entering new values (for example clicking "Field
+        Value" and "Voltage (ms)" in succession) may result in undesired
+        variation of the values. This is not an intended usage of the tool and
+        should be avoided.</span><br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h4><a class="mozTocH4" id="mozTocId621583"></a>Time Input</h4>
+      An example time input dialog is shown below:<br>
+      <br>
+      <img title="Time Input" alt="Time Input" src="img/time_input.png"><br>
+      <br>
+      <br>
+      The main components are:<br>
+      <ul>
+        <li><strong>Field Value</strong>: this is the decimal value of the
+          bitfield. It is initialized with the current bitfield value.</li>
+        <li><strong>Time (ms)</strong>: time expressed in milliseconds. It is
+          calculated from the field value, taking into account the DAC update
+          rate.</li>
+        <li><strong>DAC Update Rate</strong>: shows the DAC_UPDATE_RATE field
+          value, the ACLK divide factor and the resulting DAC update rate. It is
+          used for converting from time to decimal, and from decimal to time.
+          This checkbox is initialized from the value of DAC_UPDATE_RATE.
+          Selecting a different update rate does not affect the value of
+          DAC_UPDATE_RATE.</li>
+      </ul>
+      Updating the values happens in a similar fashion to the "Voltage Input"
+      dialog.<br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h4><a class="mozTocH4" id="mozTocId12472"></a>Frequency Input</h4>
+      An example frequency input dialog is shown below:<br>
+      <br>
+      <img title="Frequency Input" alt="Frequency Input" src="img/frequency_input.png"><br>
+      <br>
+      <br>
+      The main components are:<br>
+      <ul>
+        <li><strong>Field Value</strong>: this is the decimal value of the
+          bitfield. It is initialized with the current bitfield value.</li>
+        <li><strong>Frequency (kHz)</strong>: frequency expressed in kHz. It is
+          calculated from the field value.</li>
+      </ul>
+      Updating the values happens in a similar fashion to the "Voltage Input"
+      dialog.<br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h4><a class="mozTocH4" id="mozTocId235294"></a>Phase Input</h4>
+      An example phase input dialog is shown below:<br>
+      <br>
+      <img title="Phase Input" alt="Phase Input" src="img/phase_input.png"><br>
+      <br>
+      <br>
+      The main components are:<br>
+      <ul>
+        <li><strong>Field Value</strong>: this is the decimal value of the
+          bitfield. It is initialized with the current bitfield value.</li>
+        <li><strong>Phase (degrees)</strong>: phase expressed in degrees. It is
+          calculated from the field value.</li>
+      </ul>
+      Updating the values happens in a similar fashion to the "Voltage Input"
+      dialog.<br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h4><a class="mozTocH4" id="mozTocId187790"></a>Default Input</h4>
+      If the bitfield is not of one of the predefined types (voltage, time,
+      frequency, phase), a simple default input dialog is used. An example is
+      shown below:<br>
+      <br>
+      <img title="Default Input" alt="Default Input" src="img/default_input.png"><br>
+      <br>
+      <br>
+      The single components is "Field Value", which is the decimal value of the
+      bitfield, initialized with the current bitfield value.<br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#mozToc">[Top]</a></p>
+      <h4 style="  margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH4"
+          id="mozTocId449377"></a>Comments </h4>
+      On popup, the dialog window always displays the current bitfield value:
+      decimal value and calculated value expressed in relevant units. This
+      allows it to be used as a quick converter between the bitfield value and
+      voltage/time/frequency/phase.<br>
+      <br>
+      The default bitfield value format is decimal. The format can be changed to
+      hex by right-clicking in the "Field Value" input box and select "Number
+      Format: Hex".<br>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"> </p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"> </p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId357284"></a>Wait
+        Command</h3>
+      <p style="margin-bottom: 0.5cm; line-height: 100%">Already discussed in
+        section <a href="file:///home/tudorv/Dropbox/AFE-Sequence-Helper/doc/index.html#WaitTimeoutCommandParameters">Wait/Timeout
+          Command Parameters</a>.</p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+      <p style="margin-bottom: 0.5cm; line-height: 100%"> </p>
+      <h3 style=" margin-bottom: 0.5cm; line-height: 100%"><a class="mozTocH3" id="mozTocId233998"></a>Timeout
+        Command</h3>
+      Already discussed in section <a href="#WaitTimeoutCommandParameters">Wait/Timeout
+        Command Parameters</a>.</div>
+    <br>
+    <p style="margin-bottom: 0.5cm; line-height: 100%"><a href="#mozToc">[Top]</a></p>
+    <br>
+    <h2 style=" margin-bottom: 0cm; line-height: 100%"><a class="mozTocH2" id="mozTocId117549"></a>Getting
+      Help</h2>
+    <p style="margin-bottom: 0cm; line-height: 100%">For additional support
+      questions, please visit the ADuCM350 AFE <a href="http://ez.analog.com/community/analog-microcontrollers"></a>Sequencer
+      FAQ: <a href="http://ez.analog.com/docs/DOC-11076">http://ez.analog.com/docs/DOC-11076</a>.</p>
+    <p style="margin-bottom: 0cm; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0cm; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0cm; line-height: 100%"><br>
+    </p>
+  </body>
+</html>
