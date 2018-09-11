@@ -31,7 +31,7 @@
 
 
 /* Excitation frequency in Hz */
-#define FREQ                        (25000)
+#define FREQ                        (50000)
 /* Peak voltage in mV */
 #define VPEAK                       (599)
 /* RCAL value in Ohms */
@@ -134,6 +134,43 @@ uint32_t seq_afe_acmeasBioZ_4wire[] = {
     0x80020EF0,   /* AFE_CFG: WAVEGEN_EN, ADC_CONV_EN = 0, DFT_EN = 0                       */
     0x86007788,   /* DMUX_STATE = 0, PMUX_STATE = 0, NMUX_STATE = 0, TMUX_STATE = 0         */
     
+    0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0                                                */
+};
+
+uint32_t seq_afe_poweritup[] = {
+    5 << 16 | 0x43,
+    0x84005818,   /* AFE_FIFO_CFG: DATA_FIFO_SOURCE_SEL = 10                                */
+    0x8A000034,   /* AFE_WG_CFG: TYPE_SEL = 10                                              */
+    0x98000000,   /* AFE_WG_CFG: SINE_FCW = 0 (placeholder, user programmable)              */
+    0x9E000000,   /* AFE_WG_AMPLITUDE: SINE_AMPLITUDE = 0 (placeholder, user programmable)  */
+    0x88000F00,   /* DAC_CFG: DAC_ATTEN_EN = 0                                              */
+
+};
+
+uint32_t seq_afe_fast_meas_4wire[] = {
+  
+    17 << 16 | 0x43,                                 
+    /* TIA  */
+    0x86007788,   /* DMUX_STATE = 8, PMUX_STATE = 8, NMUX_STATE = 7, TMUX_STATE = 7         */
+    0xA0000002,   /* AFE_ADC_CFG: TIA, no bypass, offset and gain correction.               */
+    0x00000640,   /* wait 100us */ 
+    //0x00027100,    /* wait 10ms */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms ( -148us to stop at midscale)                                */
+    0x80020EF0,   /* AFE_CFG: ADC_CONV_EN = 0, DFT_EN = 0                                   */
+    
+    /* AN_A */
+    0xA0000208,   /* AFE_ADC_CFG: AN_A, Use GAIN and OFFSET AUX                             */
+    0x00000640,   /* Wait 100us                                                             */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms                                                              */
+    //0x00000C80,   /* Wait 200us                                                             */
+    0x80020EF0,   /* AFE_CFG: WAVEGEN_EN, ADC_CONV_EN = 0, DFT_EN = 0                       */
+    0x86007788,   /* DMUX_STATE = 0, PMUX_STATE = 0, NMUX_STATE = 0, TMUX_STATE = 0         */
     0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0                                                */
 };
 
@@ -253,14 +290,28 @@ int main(void) {
     }
 
     /* Update FCW in the sequence */
-    seq_afe_acmeasBioZ_4wire[3] = SEQ_MMR_WRITE(REG_AFE_AFE_WG_FCW, FCW);
+//    seq_afe_acmeasBioZ_4wire[3] = SEQ_MMR_WRITE(REG_AFE_AFE_WG_FCW, FCW);
+//    /* Update sine amplitude in the sequence */
+//    seq_afe_acmeasBioZ_4wire[4] = SEQ_MMR_WRITE(REG_AFE_AFE_WG_AMPLITUDE, SINE_AMPLITUDE);
+    /* Update FCW in the sequence */
+    seq_afe_poweritup[3] = SEQ_MMR_WRITE(REG_AFE_AFE_WG_FCW, FCW);
     /* Update sine amplitude in the sequence */
-    seq_afe_acmeasBioZ_4wire[4] = SEQ_MMR_WRITE(REG_AFE_AFE_WG_AMPLITUDE, SINE_AMPLITUDE);
+    seq_afe_poweritup[4] = SEQ_MMR_WRITE(REG_AFE_AFE_WG_AMPLITUDE, SINE_AMPLITUDE);
       
+    
     /* Recalculate CRC in software for the AC measurement, because we changed   */
     /* FCW and sine amplitude settings.                                         */
     adi_AFE_EnableSoftwareCRC(hDevice, true);
 
+    
+    PRINT("STEP ONE\n"); 
+    int16_t             dft_results[DFT_RESULTS_COUNT];    
+    if (ADI_AFE_SUCCESS != adi_AFE_RunSequence(hDevice, seq_afe_poweritup, (uint16_t *)dft_results, DFT_RESULTS_COUNT)) 
+    {
+     PRINT("AFE PROBLEM!");
+    }        
+        
+    
     PRINT("READY TO START FOR LOOP\n");     
     int run_max         = 100000000;        // do only hundred runs of each frequency sweep. 
     int run_iterator    = 0;
@@ -279,7 +330,7 @@ int main(void) {
     while (running) // running
     {
         /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
-        multiplex_adg732(hDevice, seq_afe_acmeasBioZ_4wire);
+        multiplex_adg732(hDevice, seq_afe_fast_meas_4wire);
   
         /* Perform the multiplex adg732 BiPolar Impedance measurements */
         //bipolar_measurement(hDevice, seq_afe_2wiretest);
@@ -647,9 +698,8 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq) {
     char                msg[MSG_MAXLEN] = {0};
     //sprintf(msg, "GAIN: %u Magnitudes:", rtiaAndGain);     // Now gain is 33132? 
     
-
    // NUMBEROFMEASURES
-    for (uint32_t econf = 0;econf<2;econf++) {    
+    for (uint32_t econf = 0;econf<NUMBEROFMEASURES;econf++) {    
                 
       char                tmp[300] = {0};      
       q31_t               dft_results_q31[DFT_RESULTS_COUNT]      = {0};
@@ -710,7 +760,6 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq) {
       // 5. put result into new results table
       // adi_AFE_EnableSoftwareCRC(hDevice, true);
       /* Perform the Impedance measurement */      
-      
       if (ADI_AFE_SUCCESS != adi_AFE_RunSequence(hDevice, seq, (uint16_t *)temp_dft_results, DFT_RESULTS_COUNT)) 
       {
         PRINT("FAILED Impedance Measurement");
@@ -718,11 +767,11 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq) {
       
       /* Print DFT complex results to console */     
       // PRINT("DFT results (real, imaginary):\r\n");
-      sprintf(tmp, "    CURRENT     = (%6d, %6d)\r\n", temp_dft_results[0], temp_dft_results[1]);
-      strcat(msg,tmp);
-      sprintf(tmp, "    VOLTAGE     = (%6d, %6d)\r\n", temp_dft_results[2], temp_dft_results[3]);
-      strcat(msg,tmp);       
-                                           
+//      sprintf(tmp, "    CURRENT     = (%6d, %6d)\r\n", temp_dft_results[0], temp_dft_results[1]);
+//      strcat(msg,tmp);
+//      sprintf(tmp, "    VOLTAGE     = (%6d, %6d)\r\n", temp_dft_results[2], temp_dft_results[3]);
+//      strcat(msg,tmp);       
+//                                            
       convert_dft_results(temp_dft_results, dft_results_q15, dft_results_q31);
       /* Magnitude calculation */
       arm_cmplx_mag_q31(dft_results_q31, temp_magnitude, 2);
@@ -731,23 +780,22 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq) {
       magnitude_result[0] = calculate_magnitude(temp_magnitude[1], temp_magnitude[0], rtiaAndGain);
       
       /* Print DFT complex results to console 983039, 0 on my board, and  when it works magnitude is 74333772, 274209844) */     
-      sprintf(tmp, "   magnitudes     = (%u, %u)\r\n", temp_magnitude[0], temp_magnitude[1]);
-      strcat(msg,tmp);
+      //sprintf(tmp, "   magnitudes     = (%u, %u)\r\n", temp_magnitude[0], temp_magnitude[1]);
+      //strcat(msg,tmp);
         
       sprintf_fixed32(tmp, magnitude_result[0]);
       strcat(msg,tmp);
       strcat(msg," ,"); 
+      PRINT(msg); 
  
     } // END  e_config for loop. 
     
-    strcat(msg," \r\n"); 
-    PRINT(msg); 
+    PRINT(" \r\n"); 
    
 }
 
 void init_GPIO_ports(void) {
   
-
     // Enable all 4 multiplexer ports.  
     if (ADI_GPIO_SUCCESS != adi_GPIO_SetPullUpEnable (ADI_GPIO_PORT_1,ADI_GPIO_PIN_5, false))
     {
