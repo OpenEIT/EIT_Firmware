@@ -1,7 +1,18 @@
 
-# Getting started 
+# Intro
+Firmware! Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? 
 
-There are several examples contained inside this folder. 
+If you want to download pre-compiled firmware HEX files onto the device to try out, then the HEX file folder is for you. This will let you try out different features and methods in EIT and Bioimpedance Spectroscopy. If you want to go a bit deeper and edit the files and re-compile, read the directions below. 
+
+# Getting set up
+I installed windows through VMWare and it works great. Then I installed IAR Systems IDE and plugged in my trusty Segger J-Link Debugger that enables you to do SWD firmware programming. 
+
+Then a good start is to download the documentation for the main MCU - the ADuCM350. Then I'd recommend you install their examples onto the board to make sure you can do that by following their instructions. Once you can do that you'll be equipped to try out the other firmware listed below: 
+
+This is a link to where to download the examples/software and documentation. 
+http://www.analog.com/en/products/processors-dsp/microcontrollers/precision-microcontrollers/aducm350.html
+
+# Firmware for different things! 
 
 To get started, run the IAR Workspace OpenEIT inside the IAR folder: 
 
