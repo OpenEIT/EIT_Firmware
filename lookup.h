@@ -23,7 +23,6 @@ typedef const int16_t e_config[4];
 // This will eventually be the 928 adjacent electrode sequence, but leaving it as two sequences to start is fine. 
 const e_config electrode_configuration[928] = { 
 {0,1,2,3},
-{2,3,4,5},
 {0,1,3,4},
 {0,1,4,5},
 {0,1,5,6},
@@ -949,7 +948,7 @@ const e_config electrode_configuration[928] = {
 {31,0,25,26},
 {31,0,26,27},
 {31,0,27,28},
-//{31,0,28,29},
+{31,0,28,29},
 {31,0,29,30}             
 };
 

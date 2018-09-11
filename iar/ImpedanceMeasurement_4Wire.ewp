@@ -743,7 +743,7 @@
         </option>
         <option>
           <name>IlinkAdditionalLibs</name>
-          <state>C:\Users\jeantoul\Desktop\EITCODE\C\iar\Debug\iar_cortexM3l_math.a</state>
+          <state>C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\Debug\iar_cortexM3l_math.a</state>
         </option>
         <option>
           <name>IlinkOverrideProgramEntryLabel</name>
@@ -1872,7 +1872,7 @@
   <group>
     <name>Test Sources</name>
     <file>
-      <name>$PROJ_DIR$\..\ImpedanceMeasurement_BIS_4WireBioIsolated_multifrequency.c</name>
+      <name>$PROJ_DIR$\..\ImpedanceMeasurement_EIT32_4WireBioIsolated.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\lookup.h</name>
