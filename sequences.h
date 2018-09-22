@@ -16,6 +16,62 @@ extern "C" {
 /***************************************************************************/
 /*   Sequences                                                             */
 /***************************************************************************/
+// 2 wire measurement on AFE7 and AFE8 
+uint32_t seq_fast_2wire_bipolar[] = {
+  
+    13 << 16 | 0x43,     
+    
+    /* RCAL */
+    0x86008811,   /* DMUX_STATE = 1, PMUX_STATE = 1, NMUX_STATE = 8, TMUX_STATE = 8 */
+    0x00000640,   /* Wait 100us */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1 */
+    0x00000C80,   /* Wait 200us */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1 */
+    0x00032340,   /* Wait 13ms */
+    0x80024EF0,   /* AFE_CFG: ADC_CONV_EN = 0, DFT_EN = 0 */    
+    
+    /* AFE7-AFE8 */
+    0x86007788,   /* DMUX_STATE = 8, PMUX_STATE = 8, NMUX_STATE = 7, TMUX_STATE = 7     */
+    0x00000640,   /* Wait 100us */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1 */
+    0x00032340,   /* Wait 13ms */
+    0x80020EF0,   /* AFE_CFG: WAVEGEN_EN = 0, ADC_CONV_EN = 0, DFT_EN = 0 */
+    
+    0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0 */
+    
+};
+
+
+// AFE POWER UP 
+uint32_t seq_afe_poweritup_bipolar[] = {
+    19 << 16 | 0x43,
+    0x84005818,   /* AFE_FIFO_CFG: DATA_FIFO_SOURCE_SEL = 10 */
+    0x8A000034,   /* AFE_WG_CFG: TYPE_SEL = 10 */
+    0x98000000,   /* AFE_WG_CFG: SINE_FCW = 0 (placeholder, user programmable) */
+    0x9E000000,   /* AFE_WG_AMPLITUDE: SINE_AMPLITUDE = 0 (placeholder, user programmable) */
+    0x88000F01,   /* AFE_DAC_CFG: DAC_ATTEN_EN = 1 */
+    0xA0000002,   /* AFE_ADC_CFG: MUX_SEL = 00010, GAIN_OFFS_SEL = 00 */
+    /* RCAL */
+    0x86008811,   /* DMUX_STATE = 1, PMUX_STATE = 1, NMUX_STATE = 8, TMUX_STATE = 8 */
+    0x00000640,   /* Wait 100us */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1 */
+    0x00000C80,   /* Wait 200us */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1 */
+    0x00032340,   /* Wait 13ms */
+    0x80024EF0,   /* AFE_CFG: ADC_CONV_EN = 0, DFT_EN = 0 */
+    
+    /* AFE7-AFE8 */
+    0x86007788,   /* DMUX_STATE = 8, PMUX_STATE = 8, NMUX_STATE = 7, TMUX_STATE = 7     */
+    0x00000640,   /* Wait 100us */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1 */
+    0x00032340,   /* Wait 13ms */
+    0x80020EF0,   /* AFE_CFG: WAVEGEN_EN = 0, ADC_CONV_EN = 0, DFT_EN = 0 */
+    
+    0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0 */
+        
+};
+
+
   
   
 /*
@@ -365,6 +421,109 @@ uint32_t seq_afe_mux1[] = {
       
     /* sequence end. */
     0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0 */
+};
+
+
+// with speed modification for tetrapolar measurement. 
+uint32_t seq_afe_poweritup[] = {
+    22 << 16 | 0x43,
+    0x84005818,   /* AFE_FIFO_CFG: DATA_FIFO_SOURCE_SEL = 10                                */
+    0x8A000034,   /* AFE_WG_CFG: TYPE_SEL = 10                                              */
+    0x98000000,   /* AFE_WG_CFG: SINE_FCW = 0 (placeholder, user programmable)              */
+    0x9E000000,   /* AFE_WG_AMPLITUDE: SINE_AMPLITUDE = 0 (placeholder, user programmable)  */
+    0x88000F00,   /* DAC_CFG: DAC_ATTEN_EN = 0                                              */
+
+    /* TIA  */
+    0x86007788,   /* DMUX_STATE = 8, PMUX_STATE = 8, NMUX_STATE = 7, TMUX_STATE = 7         */
+    0xA0000002,   /* AFE_ADC_CFG: TIA, no bypass, offset and gain correction.               */
+    0x0080E800,   /* Wait 528ms.                                                            */
+                  /* This is the worst case settling time:                                  */
+                  /* Rcm=10M, Ciso=22nF(20%tol) => settling time = 2*RC = 528 ms            */
+                  /* This settling time is only required the first time the switches are    */
+                  /* closed.                                                                */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms ( -148us to stop at midscale)                                */
+    0x80020EF0,   /* AFE_CFG: ADC_CONV_EN = 0, DFT_EN = 0                                   */
+    /* AN_A */
+    0xA0000208,   /* AFE_ADC_CFG: AN_A, Use GAIN and OFFSET AUX                             */
+    0x00000640,   /* Wait 100us                                                             */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms                                                              */
+    0x80020EF0,   /* AFE_CFG: WAVEGEN_EN, ADC_CONV_EN = 0, DFT_EN = 0                       */
+    0x86007788,   /* DMUX_STATE = 0, PMUX_STATE = 0, NMUX_STATE = 0, TMUX_STATE = 0         */
+    
+    0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0                                                */
+
+};
+
+uint32_t seq_afe_fast_meas_4wire[] = {
+  
+    17 << 16 | 0x43,                                 
+    /* TIA  */
+    0x86007788,   /* DMUX_STATE = 8, PMUX_STATE = 8, NMUX_STATE = 7, TMUX_STATE = 7         */
+    0xA0000002,   /* AFE_ADC_CFG: TIA, no bypass, offset and gain correction.               */
+    0x00000640,   /* wait 100us */ 
+    //0x00027100,    /* wait 10ms */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms ( -148us to stop at midscale)                                */
+    0x80020EF0,   /* AFE_CFG: ADC_CONV_EN = 0, DFT_EN = 0                                   */
+    
+    /* AN_A */
+    0xA0000208,   /* AFE_ADC_CFG: AN_A, Use GAIN and OFFSET AUX                             */
+    0x00000640,   /* Wait 100us                                                             */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00032340,   /* Wait 13ms                                                              */    
+    // 0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms                                                              */
+    0x80020EF0,   /* AFE_CFG: WAVEGEN_EN, ADC_CONV_EN = 0, DFT_EN = 0                       */
+    0x86007788,   /* DMUX_STATE = 0, PMUX_STATE = 0, NMUX_STATE = 0, TMUX_STATE = 0         */
+    0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0                                                */
+};
+
+
+/* using this on in BIS */ 
+uint32_t seq_afe_fast_acmeasBioZ_4wire[] = {
+  
+    0x0016001A,   /* Safety word: bits 31:16 = command count, bits 7:0 = CRC                */
+    0x84005818,   /* AFE_FIFO_CFG: DATA_FIFO_SOURCE_SEL = 10                                */
+    0x8A000034,   /* AFE_WG_CFG: TYPE_SEL = 10                                              */
+    0x98000000,   /* AFE_WG_CFG: SINE_FCW = 0 (placeholder, user programmable)              */
+    0x9E000000,   /* AFE_WG_AMPLITUDE: SINE_AMPLITUDE = 0 (placeholder, user programmable)  */
+    0x88000F00,   /* DAC_CFG: DAC_ATTEN_EN = 0                                              */
+
+    /* TIA  */
+    0x86007788,   /* DMUX_STATE = 8, PMUX_STATE = 8, NMUX_STATE = 7, TMUX_STATE = 7         */
+    0xA0000002,   /* AFE_ADC_CFG: TIA, no bypass, offset and gain correction.               */
+    // 0x00000640,   /* wait 100us */ 
+    0x00003E80,      /* 20 ms */   
+    //0x0080E800,   /* Wait 528ms.                                                            */
+                  /* This is the worst case settling time:                                  */
+                  /* Rcm=10M, Ciso=22nF(20%tol) => settling time = 2*RC = 528 ms            */
+                  /* This settling time is only required the first time the switches are    */
+                  /* closed.                                                                */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms ( -148us to stop at midscale)                                */
+    0x80020EF0,   /* AFE_CFG: ADC_CONV_EN = 0, DFT_EN = 0                                   */
+    
+    /* AN_A */
+    0xA0000208,   /* AFE_ADC_CFG: AN_A, Use GAIN and OFFSET AUX                             */
+    0x00000640,   /* Wait 100us                                                             */
+    0x80024EF0,   /* AFE_CFG: WAVEGEN_EN = 1                                                */
+    0x00000C80,   /* Wait 200us                                                             */
+    0x8002CFF0,   /* AFE_CFG: ADC_CONV_EN = 1, DFT_EN = 1                                   */
+    0x00032340,   /* Wait 13ms                                                              */
+    0x80020EF0,   /* AFE_CFG: WAVEGEN_EN, ADC_CONV_EN = 0, DFT_EN = 0                       */
+    0x86007788,   /* DMUX_STATE = 0, PMUX_STATE = 0, NMUX_STATE = 0, TMUX_STATE = 0         */
+    0x82000002,   /* AFE_SEQ_CFG: SEQ_EN = 0                                                */
 };
 
 /* C++ linkage */

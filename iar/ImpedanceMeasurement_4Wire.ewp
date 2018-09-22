@@ -577,7 +577,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state>ImpedanceMeasurement_bioisolated.hex</state>
+          <state>openeit.hex</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -631,7 +631,7 @@
         </option>
         <option>
           <name>IlinkOutputFile</name>
-          <state>ImpedanceMeasurement_2Wire.out</state>
+          <state>openeit.out</state>
         </option>
         <option>
           <name>IlinkDebugInfoEnable</name>
@@ -1872,10 +1872,13 @@
   <group>
     <name>Test Sources</name>
     <file>
-      <name>$PROJ_DIR$\..\ImpedanceMeasurement_EIT32_4WireBioIsolated.c</name>
+      <name>$PROJ_DIR$\..\lookup.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\lookup.h</name>
+      <name>$PROJ_DIR$\..\modes.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\OpenEIT.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\PinMux.c</name>

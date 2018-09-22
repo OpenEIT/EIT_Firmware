@@ -1,67 +1,59 @@
-
 # Intro
-Firmware! Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? 
 
-If you want to download pre-compiled firmware HEX files onto the device to try out, then the HEX file folder is for you. This will let you try out different features and methods in EIT and Bioimpedance Spectroscopy. If you want to go a bit deeper and edit the files and re-compile, read the directions below. 
+Installation of firmware development environment is in another readme. This details the function and operation of the firmware. 
+Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? Want to try different electrode stimulation patterns? 
 
-# Getting set up
-I installed windows through VMWare and it works great. Then I installed IAR Systems IDE and plugged in my trusty Segger J-Link Debugger that enables you to do SWD firmware programming. 
+# Hardware 
+This firmware is meant for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy as time series impedance measurements.
+ 
+![alt text](images/PCB.png "PCB")
 
-Then a good start is to download the documentation for the main MCU - the ADuCM350. Then I'd recommend you install their examples onto the board to make sure you can do that by following their instructions. Once you can do that you'll be equipped to try out the other firmware listed below: 
+# Running the installed firmware. 
 
-This is a link to where to download the examples/software and documentation. 
-http://www.analog.com/en/products/processors-dsp/microcontrollers/precision-microcontrollers/aducm350.html
+The device comes pre-programmed with this firmware. Each time you reset the device a set of menu options is communicated via UART. Once you select an option, press the return key and that option will start executing until you power cycle once more. 
 
-# Firmware for different things! 
+Options Outlines: 
+A) Time series - 
+   This outputs the impedance magnitude at 40 frames per second at 50kHz(or whatever frequency is set in firmware). 
 
-To get started, run the IAR Workspace OpenEIT inside the IAR folder: 
+   How to take a measurement with bioimpedance spectroscopy: A+, V+, V- ,A-
 
-You can select between a range of different programs to run and below there are short descriptions of each. To switch simply drag the C file for main and remove the previous one from the workspace and recompile.  
+   Example of Use: 
+![alt text](images/timeseriesexample.png "Time Series Example")
 
-* ImpedanceMeasurement_timeseries_2Wire: Performs time series measurements with AFE7 and AFE8. 
-* ImpedanceMeasurement_timeseries_4WireBioIsolated: Performs time series measurements using a tetrapolar common mode rejection configuraiton. 
-* ImpedanceMeasurement_BIS_4WireBioIsolated_multifrequency: Does time series BIS taking a spectrum with 15 measurements between 80Hz and 80kHz. Uses AFE7,8 and a differential op amp configuration on the board. 
+B) Bioimpedance Spectroscopy - 
+	This outputs impedance magnitudes at the following frequencies, and then repeats the cycle. 
+	frequencies = {200,500,800,1000,2000,5000,8000,10000,15000,20000,30000,40000,50000,60000,70000};
 
-* ImpedanceMeasurement_EIT8_bipolar: Runs through 28 measurements to do tomographic reconstruction of a bipolar system. 
-* ImpedanceMeasurement_EIT8_bipolar_multifrequency: Create a spectrum for every pixel in an 8 electrode tomographic reconstruction. 
-* ImpedanceMeasurement_EIT32_4WireBioIsolated: Takes 928 measurements in tetrapolar mode, to do the highest spatial resolution construction. 
-* ImpedanceMeasurement_EIT32_bipolar: takes 928 measurements in a bipolar configuration. 
+	Example of use: 
 
+![alt text](images/spectrums.png "Spectrums")
 
-To Download onto device: 
-Hit build, and if it builds without errors a HEX file will be contained in the 
-iar/debug/exe folder. Ensure your device is plugged in via a SWD programmer then run the .bat file to program. 
-Your device should now be running the firmware. 
+C) Electrical Impedance Tomography - This is configurable in firmware to 8, 16, 32 electrodes dependent on desired timing and resolution trade offs etc. 
 
-To check that your device is operating the firmware correctly, open a realterm or coolterm prompt and create a serial connection with the device. You should see readings coming through the serial port. If everything looks good, it's time to go to the EIT dashboard to have a look and the data and do some experiments! 
+The ordering of electrodes is created using pyEIT as follows: 
+ex_mat = eit_scan_lines(ne=8, dist=3)  step = 3
+ex_mat = eit_scan_lines(ne=16, dist=8) step = 8
+ex_mat = eit_scan_lines(ne=32, dist=16) step = 16
+In the file the ordering is:
+A+, A-, V+, V-
+A, B, M, N
+where
+    A : current driving electrode
+    B : current sink
+    M, N : boundary electrodes, where v_diff = v_n - v_m
+
+We have chosen an opposition based electrode patten instead of the more commonly used adjacent scheme, as we came across these papers supporting improved contrast if opposition schemes were used: 
+[1]	A. Adler, P. O. Gaggero, and Y. Maimaitijiang, “Adjacent stimulation and measurement patterns considered harmful,” Physiol. Meas., vol. 32, no. 7, pp. 731–744, 2011.
+[2]	F. M. Yu, C. N. Huang, F. M. Hsu, and H. Y. Chung, “Pseudo electrodes driven patterns for Electrical Impedance Tomography,” Proc. SICE Annu. Conf., pp. 2890–2894, 2007.
+
+It's possible other electrode arrangement schemes are better yet. 
+
+	Example of use: 
+
+![alt text](images/picturegrid.png "Grid of 32 electrode reconstructions")
+
+![alt text](images/LungscomparedtoCTScan.png "My Thorax")
 
 A note on which debugger to use: 
-- I recommend using a Segger J-link debugger with SWD programming cable. The configuration on the PCB also allows for the VCOM port to work which means you can also read serial through the same connection. The specific configuration can be seen in the .bat file contained in the EXE directory. 
-
-
-
-# EIT_Firmware
-
-This is an example for 2-wire impedance measurement, across 28 different arrangements of electrodes described by the EIT PCB.
-
-After the initialization and calibration steps, 28 DFT measurements are performed, measuring impedance between the AFE pins:
-RCAL1-RCAL2, AFE3-AFE4, AFE4-AFE5, AFE3-AFE5 ... for all 8 electrodes. It then calculates the magnitude and phase of the DFT results and reports the calibrated results for the impedances (between the AFE pins).
-
-The example doesn't use floating-point, all the arithmetic is performed using fixed-point. The fixed-point types and functions defined in CMSIS DSP library are used  whenever possible. A custom fixed-point type, with 28 integer bits and 4 fractional bits, is used to store the final results.
-
-The example will report zero magnitude and zero phase if an open circuit is measured.
-
-## Details
-
-The excitation voltage and amplitude, as well as RCAL value, are programmable through macros.
-Note: there are no checks in the code that the values are within admissible ranges, which needs to be ensured by the user.
-
-When using the Eval-ADuCM350EBZ board, the  test needs a daughter board attached to the evaluation board, with the relevant impedances populated. The example will report zero magnitude and zero phase if an open circuit is measured.
-
-Once the test has finished, it sends a result message string to STDIO; "PASS" for success and "FAIL" (plus failure message) for failures.
-
-The raw DFT complex results (real and imaginary parts) are also reported through the UART/STDIO, as well as the final calibrated unknown impedances,
-represented in polar coordinates (magnitude and phase). The USE_UART_FOR_DATA macro determines whether the results are returned to the UART or STDIO. To return data is using the UART, set the macro USE_UART_FOR_DATA = 1. To return data is using STDIO, set the macro USE_UART_FOR_DATA = 0.
-
-For Eval-ADUCM350EBZ boards, the results are returned to the PC/host via the UART-on-USB interface on the USB-SWD/UART-EMUZ (Rev.C) board to a listening PC based terminal application tuned to the corresponding virtual serial port. See the ADuCM350 Device Drivers Getting Started Guide for information on drivers and configuring the PC based terminal application.
-
+- I recommend using a Segger J-link debugger with SWD programming cable. If you are not using it for commercial use you can get the EDU version at a reasonable price(you don't even have to be part of a school). The configuration on the PCB also allows for the VCOM port to work which means you can also read serial through the same connection. The specific configuration can be seen in the .bat file contained in the EXE directory. 

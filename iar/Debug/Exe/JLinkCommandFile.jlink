@@ -2,6 +2,6 @@ connect
 r
 erase
 r
-loadfile C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\Debug\Exe\ImpedanceMeasurement_bioisolated.hex
+loadfile C:\Users\jeantoul\Desktop\EIT_32\EIT_Firmware\iar\Debug\Exe\openeit.hex
 r
 exit
