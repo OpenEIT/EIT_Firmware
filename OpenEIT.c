@@ -152,14 +152,17 @@ int main(void)
     PRINT("OpenEIT:\n");
     PRINT("Press:\n a for Time-Series,\n b for Bioimpedance Spectroscopy,\n c for Imaging followed by return key.\n");
     PRINT("*******************\n");     
-    
+    uint16_t numbytes = 1; 
     /* UART processing loop */
     while(bStopFlag == false)
     {
         rxSize = 2;
-        /* Read a character */
-        uartResult = adi_UART_BufRx(hUartDevice, RxBuffer, &rxSize);
-
+        // only execute a blocking read buffer if something has been sent. 
+        if (adi_UART_GetNumRxBytes(hUartDevice) > numbytes)
+        {
+          /* Read a character */
+          uartResult = adi_UART_BufRx(hUartDevice, RxBuffer, &rxSize);
+        }
         /* Select 1,2,3 to enter into a different mode. */
         if(RxBuffer[0] == 'a' && RxBuffer[1] == '\r' )  // Time-Series
         {
@@ -206,7 +209,9 @@ int main(void)
           
         }                
         else { 
-           PRINT("Press a for Time-Series, b for Bioimpedance Spectroscopy, c for Imaging followed by return key.\n");
+          PRINT("..\n");
+          delay(300);
+           //PRINT("Press a for Time-Series, b for Bioimpedance Spectroscopy, c for Imaging followed by return key.\n");
         }
         adi_UART_BufFlush(hUartDevice);
         
