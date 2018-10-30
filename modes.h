@@ -44,11 +44,12 @@ extern "C" {
   
 #define MSG_MAXLEN_M3                  (400)
   
-#define NUMBEROFMEASURES                (960) 
+#define NUMBEROFMEASURES                (896) 
 
-#define NO_MEASURES_32_OPPOSITION       (960) 
-#define NO_MEASURES_16_OPPOSITION       (224) 
-#define NO_MEASURES_8_OPPOSITION        (48)   
+
+#define NO_MEASURES_32_OPPOSITION       (896) 
+#define NO_MEASURES_16_OPPOSITION       (192) 
+#define NO_MEASURES_8_OPPOSITION        (32)   
   
 /***************************************************************************/
 /*   Defines for Mode Timeseries                                               */

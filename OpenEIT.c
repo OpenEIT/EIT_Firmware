@@ -52,11 +52,11 @@ License Agreement.
 
 #include <ADuCM350_device.h>
 
-//#if defined ( __ICCARM__ )  // IAR compiler...
-///* Apply ADI MISRA Suppressions */
-//#define ASSERT_ADI_MISRA_SUPPRESSIONS
-//#include "misra.h"
-//#endif
+#if defined ( __ICCARM__ )  // IAR compiler...
+/* Apply ADI MISRA Suppressions */
+#define ASSERT_ADI_MISRA_SUPPRESSIONS
+#include "misra.h"
+#endif
 
 /* Macro to enable the returning of AFE data using the UART */
 /*      1 = return AFE data on UART                         */
@@ -98,6 +98,7 @@ void                    sprintf_fixed32         (char *out, fixed32_t in);
 void                    print_MagnitudePhase    (char *text, fixed32_t magnitude, fixed32_t phase);
 void                    test_print              (char *pBuffer);
 ADI_UART_RESULT_TYPE    uart_Init               (void);
+ADI_UART_RESULT_TYPE    uart_Init_Simple        (void);
 ADI_UART_RESULT_TYPE    uart_UnInit             (void);
 void                    delay                   (uint32_t counts);
 extern int32_t          adi_initpinmux          (void);
@@ -115,157 +116,158 @@ void                    bipolar_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32
 
 int main(void)
 {
-
-    ADI_UART_RESULT_TYPE uartResult;
-    int16_t  rxSize;
-    int16_t  mode = 0; 
-    
-    /* Flag which indicates whether to stop the program */
-    _Bool bStopFlag = false;
-
-    /* Clock initialization */
-    SystemInit();
-
-    /* NVIC initialization */
-    NVIC_SetPriorityGrouping(12);
-
-     /* Change the system clock source to HFXTAL and change clock frequency to 16MHz     */
-    /* Requirement for AFE (ACLK)                                                       */
-    SystemTransitionClocks(ADI_SYS_CLOCK_TRIGGER_MEASUREMENT_ON);
-
-    /* SPLL with 32MHz used, need to divide by 2 */
-    SetSystemClockDivider(ADI_SYS_CLOCK_UART, 2);       
-    
-    /* Test initialization */
-    test_Init();
-    
-    /* Use static pinmuxing */
-    adi_initpinmux();
-
-    /* Initialize the UART */
-    if (ADI_UART_SUCCESS != uart_Init())
-    {
-        FAIL("uart_Init");
-    }    
-    
-    PRINT("\n*******************\n");    
-    PRINT("OpenEIT:\n");
-    PRINT("Press:\n a for Time-Series,\n b for Bioimpedance Spectroscopy,\n c for Imaging followed by return key.\n");
-    PRINT("*******************\n");     
-    uint16_t numbytes = 1; 
-    /* UART processing loop */
-    while(bStopFlag == false)
-    {
-        rxSize = 2;
-        // only execute a blocking read buffer if something has been sent. 
-        if (adi_UART_GetNumRxBytes(hUartDevice) > numbytes)
-        {
-          /* Read a character */
-          uartResult = adi_UART_BufRx(hUartDevice, RxBuffer, &rxSize);
-        }
-        /* Select 1,2,3 to enter into a different mode. */
-        if(RxBuffer[0] == 'a' && RxBuffer[1] == '\r' )  // Time-Series
-        {
-          mode = 1;
-          PRINT("MODE 1: Time Series Impedance data\n");
-          init_mode_tetramux();
-          /* Stop the program upon receiving carriage return */
-          bStopFlag = true;      
-
-        }          
-        else if (RxBuffer[0] == 'b' && RxBuffer[1] == '\r' )  // Bioimpedance Spectroscopy
-        {
-          mode = 2;
-          PRINT("MODE 2: Bioimpedance Spectroscopy\n");
-          init_mode_bis();
-          /* Stop the program upon receiving carriage return */
-          bStopFlag = true;
-        }
-        else if (RxBuffer[0] == 'c'  && RxBuffer[1] == '\r' )  // Tetrapolar Imaging 
-        {
-          mode = 3;
-          PRINT("MODE 3: Imaging\n");
-          init_mode_tetramux();
-          /* Stop the program upon receiving carriage return */
-          bStopFlag = true;    
-          
-        }
-        else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\r' )  // Bipolar Imaging 
-        {
-          mode = 4;
-          PRINT("MODE 4: Bipolar Imaging(faster for tank phantoms)\n");
-          init_mode_bipolar();
-          /* Stop the program upon receiving carriage return */
-          bStopFlag = true;    
-          
-        }        
-        else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\r' )  // Bipolar Time series Imaging 
-        {
-          mode = 5;
-          PRINT("MODE 5: Bipolar Time-series)\n");
-          init_mode_bipolar();
-          /* Stop the program upon receiving carriage return */
-          bStopFlag = true;    
-          
-        }                
-        else { 
-          PRINT("..\n");
-          delay(300);
-           //PRINT("Press a for Time-Series, b for Bioimpedance Spectroscopy, c for Imaging followed by return key.\n");
-        }
-        adi_UART_BufFlush(hUartDevice);
-        
-     }
-    
-    PRINT("Completed Initialization\n\n");
-    /* main processing loop */
-    while (bStopFlag == true) // running
-    {
-      if (mode == 1) {  // time series
-        time_series(hDevice, seq_afe_fast_meas_4wire);
-      }
-      else if (mode == 2) {  // bioimpedance spectroscopy
-        bioimpedance_spectroscopy(hDevice, seq_afe_fast_acmeasBioZ_4wire);
-      }
-      else if (mode == 3) {  // 32 electrode imaging
-        uint32_t n_el = 8;
-        /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
-        multiplex_adg732(hDevice, seq_afe_fast_meas_4wire, n_el);
-      }
-      else if (mode == 4) {
-        uint32_t n_el = 16;
-        bipolar_adg732(hDevice, seq_fast_2wire_bipolar, n_el);
-      }
-      else if (mode == 5) {
-        time_series_bipolar(hDevice, seq_fast_2wire_bipolar);
-      }
-      else {
-        PRINT("no mode chosen\n");
-      }
-      
-    }  // END OF WHILE LOOP 
-
-    
-    /* AFE Power Down */
-    if (ADI_AFE_SUCCESS != adi_AFE_PowerDown(hDevice)) 
-    {
-        FAIL("PowerDown");
+  
+  ADI_UART_RESULT_TYPE uartResult;
+  int16_t  rxSize;
+  int16_t  mode = 0; 
+  
+  /* Flag which indicates whether to stop the program */
+  _Bool bStopFlag = false;
+  
+  /* Clock initialization */
+  SystemInit();
+  
+  /* NVIC initialization */
+  NVIC_SetPriorityGrouping(12);
+  
+  /* Change the system clock source to HFXTAL and change clock frequency to 16MHz     */
+  /* Requirement for AFE (ACLK)                                                       */
+  SystemTransitionClocks(ADI_SYS_CLOCK_TRIGGER_MEASUREMENT_ON);
+  
+  /* SPLL with 32MHz used, need to divide by 2 */
+  SetSystemClockDivider(ADI_SYS_CLOCK_UART, 2);       
+  
+  /* Test initialization */
+  test_Init();
+  
+  /* Use static pinmuxing */
+  adi_initpinmux();
+  
+  /* Initialize the UART */
+  if (ADI_UART_SUCCESS != uart_Init_Simple())
+  {
+    FAIL("uart_Init");
+  }    
+  
+  PRINT("OpenEIT\n");
+  //    uint16_t numbytes = 1; 
+  //    /* UART processing loop */
+  //    while(bStopFlag == false)
+  //    {
+  //      rxSize = 2;
+  //      // only execute a blocking read buffer if something has been sent. 
+  //      if (adi_UART_GetNumRxBytes(hUartDevice) > numbytes)
+  //      {
+  //        /* Read a character */
+  //        uartResult = adi_UART_BufRx(hUartDevice, RxBuffer, &rxSize);
+  //      }
+  //      /* Select 1,2,3 to enter into a different mode. */
+  //      if(RxBuffer[0] == 'a' && RxBuffer[1] == '\n' )  // Time-Series
+  //      {
+  //        mode = 1;
+  //        PRINT("MODE 1: Time Series Impedance data\n");
+  //        init_mode_tetramux();
+  //        /* Stop the program upon receiving carriage return */
+  //        bStopFlag = true;      
+  //        
+  //      }          
+  //      else if (RxBuffer[0] == 'b' && RxBuffer[1] == '\n' )  // Bioimpedance Spectroscopy
+  //      {
+  //        mode = 2;
+  //        PRINT("MODE 2: Bioimpedance Spectroscopy\n");
+  //        init_mode_bis();
+  //        /* Stop the program upon receiving carriage return */
+  //        bStopFlag = true;
+  //      }
+  //      else if (RxBuffer[0] == 'c'  && RxBuffer[1] == '\n' )  // Tetrapolar Imaging 
+  //      {
+  //        mode = 3;
+  //        PRINT("MODE 3: Imaging\n");
+  //        init_mode_tetramux();
+  //        /* Stop the program upon receiving carriage return */
+  //        bStopFlag = true;    
+  //        
+  //      }
+  //      else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' )  // Bipolar Imaging 
+  //      {
+  //        mode = 4;
+  //        PRINT("MODE 4: Bipolar Imaging(faster for tank phantoms)\n");
+  //        init_mode_bipolar();
+  //        /* Stop the program upon receiving carriage return */
+  //        bStopFlag = true;    
+  //        
+  //      }        
+  //      else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' )  // Bipolar Time series Imaging 
+  //      {
+  //        mode = 5;
+  //        PRINT("MODE 5: Bipolar Time-series)\n");
+  //        init_mode_bipolar();
+  //        /* Stop the program upon receiving carriage return */
+  //        bStopFlag = true;    
+  //        
+  //      }                
+  //      else { 
+  //        PRINT("..\n");
+  //        delay(300);
+  //        //PRINT("Press a for Time-Series, b for Bioimpedance Spectroscopy, c for Imaging followed by return key.\n");
+  //      }
+  //      adi_UART_BufFlush(hUartDevice);
+  //      
+  //    }
+  
+  mode = 3;
+  PRINT("MODE 3: Imaging\n");
+  init_mode_tetramux();
+  bStopFlag = true;    
+  PRINT("Completed Initialization\n\n");
+  /* main processing loop */
+  while (bStopFlag == true) // running
+  {
+    if (mode == 1) {  // time series
+      time_series(hDevice, seq_afe_fast_meas_4wire);
     }
-
-    /* Uninitialize the AFE API */
-    if (ADI_AFE_SUCCESS != adi_AFE_UnInit(hDevice)) 
-    {
-        FAIL("Uninit");
+    else if (mode == 2) {  // bioimpedance spectroscopy
+      bioimpedance_spectroscopy(hDevice, seq_afe_fast_acmeasBioZ_4wire);
     }
-        
-    /* Close the UART */
-    uartResult = adi_UART_UnInit(hUartDevice);
-    if (ADI_UART_SUCCESS != uartResult)
-    {
-        FAIL("adi_UART_UnInit");
+    else if (mode == 3) {  // 32 electrode imaging
+      uint32_t n_el = 8;
+      /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
+      multiplex_adg732(hDevice, seq_afe_fast_meas_4wire, n_el);
     }
-
-
+    else if (mode == 4) {
+      uint32_t n_el = 16;
+      bipolar_adg732(hDevice, seq_fast_2wire_bipolar, n_el);
+    }
+    else if (mode == 5) {
+      time_series_bipolar(hDevice, seq_fast_2wire_bipolar);
+    }
+    else {
+      PRINT("no mode chosen\n");
+    }
+    
+  }  // END OF WHILE LOOP 
+  
+  
+  /* AFE Power Down */
+  if (ADI_AFE_SUCCESS != adi_AFE_PowerDown(hDevice)) 
+  {
+    FAIL("PowerDown");
+  }
+  
+  /* Uninitialize the AFE API */
+  if (ADI_AFE_SUCCESS != adi_AFE_UnInit(hDevice)) 
+  {
+    FAIL("Uninit");
+  }
+  
+  /* Close the UART */
+  uartResult = adi_UART_UnInit(hUartDevice);
+  if (ADI_UART_SUCCESS != uartResult)
+  {
+    FAIL("adi_UART_UnInit");
+  }
+  
+  
 }
 
 
@@ -525,6 +527,33 @@ void test_print (char *pBuffer) {
 #endif /* USE_UART_FOR_DATA */
 }
 
+
+/* Initialize the UART, set the baud rate and enable */
+ADI_UART_RESULT_TYPE uart_Init_Simple (void) {
+    ADI_UART_RESULT_TYPE    result = ADI_UART_SUCCESS;
+    
+    /* Open UART in blocking, non-intrrpt mode by supplying no internal buffs */
+    if (ADI_UART_SUCCESS != (result = adi_UART_Init(ADI_UART_DEVID_0, &hUartDevice, NULL)))
+    {
+        return result;
+    }
+
+    /* Set UART baud rate to 115200 */
+    if (ADI_UART_SUCCESS != (result = adi_UART_SetBaudRate(hUartDevice, ADI_UART_BAUD_115200)))
+    {
+        return result;
+    }
+    
+    /* Enable UART */
+    if (ADI_UART_SUCCESS != (result = adi_UART_Enable(hUartDevice,true)))
+    {
+        return result;
+    }
+    
+    return result;
+}
+
+
 /* Initialize the UART, set the baud rate and enable */
 ADI_UART_RESULT_TYPE uart_Init (void) {
   
@@ -751,19 +780,19 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq,uin
   
    // int 32 of the sequence, no of measures based on the sequence entered. 
    // i.e. n_el if 8, 16, 32, we can pick which sequence. 
-   // 
+   //   32, 192, 896  
     uint32_t            numberofmeasures;
     if (n_el == 8) {
-      numberofmeasures = 48;
+      numberofmeasures = 32;
     }  
     else if (n_el == 16) {
-      numberofmeasures = 224;
+      numberofmeasures = 192;
     }
     else if (n_el == 32) {
-      numberofmeasures = 960;
+      numberofmeasures = 896;
     }
     else {
-      numberofmeasures = 0;
+      numberofmeasures = 928;
       PRINT("number of measures is 0\n");
     }
     
@@ -798,7 +827,7 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq,uin
         e = (int16_t *)electrode_configuration_32_opposition[econf];
       }
       else {
-        e = (int16_t *)electrode_configuration_32_opposition[econf];
+        e = (int16_t *)electrode_configuration_32_adjacent[econf];
       }
       
       // M1,M2,M3,M4 = 1,2,4,5 
@@ -815,6 +844,11 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq,uin
       int16_t* mx3_assignment = (int16_t *)truth_table[e[0]];  // A+ -> 
       int16_t* mx4_assignment = (int16_t *)truth_table[e[2]];  // V+ ->   
         
+//      int16_t* mx1_assignment = (int16_t *)truth_table[e[0]];  // A- -> 
+//      int16_t* mx2_assignment = (int16_t *)truth_table[e[1]];  // V- ->  
+//      int16_t* mx3_assignment = (int16_t *)truth_table[e[2]];  // A+ -> 
+//      int16_t* mx4_assignment = (int16_t *)truth_table[e[3]];  // V+ ->         
+      
       PinMap m1_portpin;  
       PinMap m2_portpin;  
       PinMap m3_portpin;  
@@ -899,16 +933,16 @@ void bipolar_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq,uint3
   
    // int 32 of the sequence, no of measures based on the sequence entered. 
    // i.e. n_el if 8, 16, 32, we can pick which sequence. 
-   // 
+   //   32, 192, 896  
     uint32_t            numberofmeasures;
     if (n_el == 8) {
-      numberofmeasures = 48;
+      numberofmeasures = 32;
     }  
     else if (n_el == 16) {
-      numberofmeasures = 224;
+      numberofmeasures = 192;
     }
     else if (n_el == 32) {
-      numberofmeasures = 960;
+      numberofmeasures = 896;
     }
     else {
       numberofmeasures = 0;
