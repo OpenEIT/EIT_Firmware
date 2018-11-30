@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+executable.name=JLinkGDBServer
+install.folder=/opt/SEGGER/JLink_V634b

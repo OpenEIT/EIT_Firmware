@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "startup.h": "c",
+        "device.h": "c"
+    }
+}
