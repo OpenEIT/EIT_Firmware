@@ -64,7 +64,7 @@ It's possible other electrode arrangement schemes are better yet.
 A note on which debugger to use: 
 - I recommend using a Segger J-link debugger with SWD programming cable. If you are not using it for commercial use you can get the EDU version at a reasonable price(you don't even have to be part of a school). The configuration on the PCB also allows for the VCOM port to work which means you can also read serial through the same connection. The specific configuration can be seen in the .bat file contained in the EXE directory. 
 
-Behold my thorax! 
+Behold my thorax! This was taken using this firmware, the most difficult part of the process was placing the electrodes.  
 
 <p align="center">
 	<img src="images/LungscomparedtoCTScan.png" height="300">
