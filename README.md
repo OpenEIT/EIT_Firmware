@@ -4,8 +4,10 @@ This details the function and operation of the firmware. Wondering how the imped
 
 # Hardware 
 This firmware is designed for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy and time series impedance measurements.
- 
-![alt text](images/PCB.jpeg "PCB")
+
+<p align="center">
+	<img src="images/PCB.jpeg" height="400">
+</p>
 
 # Running the installed firmware. 
 
@@ -18,7 +20,10 @@ A) Time series -
    How to take a measurement with bioimpedance spectroscopy: A+, V+, V- ,A-
 
    Example of Use: 
-![alt text](images/timeseriesexample.png "Time Series Example")
+   
+<p align="center">
+	<img src="images/timeseriesexample.png" height="300">
+</p>
 
 B) Bioimpedance Spectroscopy - 
 	This outputs impedance magnitudes at the following frequencies, and then repeats the cycle. 
@@ -26,7 +31,9 @@ B) Bioimpedance Spectroscopy -
 
 	Example of use: 
 
-![alt text](images/spectrums.png "Spectrums")
+<p align="center">
+	<img src="images/spectrums.png" height="400">
+</p>
 
 C) Electrical Impedance Tomography - This is configurable in firmware to 8, 16, 32 electrodes dependent on desired timing and resolution trade offs etc. 
 
@@ -50,9 +57,14 @@ It's possible other electrode arrangement schemes are better yet.
 
 	Example of use: 
 
-![alt text](images/picturegrid.png "Grid of 32 electrode reconstructions")
+<p align="center">
+	<img src="images/picturegrid.png" height="500">
+</p>
 
-![alt text](images/LungscomparedtoCTScan.png "My Thorax")
+<p align="center">
+	<img src="images/LungscomparedtoCTScan.png" height="500">
+</p>
+
 
 A note on which debugger to use: 
 - I recommend using a Segger J-link debugger with SWD programming cable. If you are not using it for commercial use you can get the EDU version at a reasonable price(you don't even have to be part of a school). The configuration on the PCB also allows for the VCOM port to work which means you can also read serial through the same connection. The specific configuration can be seen in the .bat file contained in the EXE directory. 
