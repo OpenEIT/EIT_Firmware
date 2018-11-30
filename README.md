@@ -1,16 +1,15 @@
 # Intro
 
-Installation of firmware development environment is in another readme. This details the function and operation of the firmware. 
-Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? Want to try different electrode stimulation patterns? 
+This details the function and operation of the firmware. Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? Want to try different electrode stimulation patterns? This is the place to be. Not that there is another branch called gcc-toolchain of this firmware which gives a separate set of installation instructions. 
 
 # Hardware 
-This firmware is meant for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy as time series impedance measurements.
+This firmware is designed for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy and time series impedance measurements.
  
-![alt text](images/PCB.png "PCB")
+![alt text](images/PCB.jpeg "PCB")
 
 # Running the installed firmware. 
 
-The device comes pre-programmed with this firmware. Each time you reset the device a set of menu options is communicated via UART. Once you select an option, press the return key and that option will start executing until you power cycle once more. 
+The device comes pre-programmed with this firmware. Each time you reset the device a set of menu options is communicated via UART or Bluetooth. Once you select an option, press the return key and that option will start executing until you power cycle once more. 
 
 Options Outlines: 
 A) Time series - 
