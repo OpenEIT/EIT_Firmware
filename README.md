@@ -3,7 +3,7 @@
 This details the function and operation of the firmware. Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? Want to try different electrode stimulation patterns? This is the place to be. Not that there is another branch called gcc-toolchain of this firmware which gives a separate set of installation instructions. 
 
 # Hardware 
-This firmware is designed for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy and time series impedance measurements.
+This firmware is designed for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy and time series impedance measurements. It measures 2" square and is based on the ADuCM350 precision analog impedance analyzer chip. 
 
 <p align="center">
 	<img src="images/PCB.jpeg" height="200">
