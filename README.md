@@ -6,7 +6,7 @@ This details the function and operation of the firmware. Wondering how the imped
 This firmware is designed for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy and time series impedance measurements.
 
 <p align="center">
-	<img src="images/PCB.jpeg" height="400">
+	<img src="images/PCB.jpeg" height="200">
 </p>
 
 # Running the installed firmware. 
@@ -19,7 +19,7 @@ A) Time series -
 
    How to take a measurement with bioimpedance spectroscopy: A+, V+, V- ,A-
 
-   Example of Use: 
+### Example of Use 
    
 <p align="center">
 	<img src="images/timeseriesexample.png" height="300">
@@ -29,7 +29,7 @@ B) Bioimpedance Spectroscopy -
 	This outputs impedance magnitudes at the following frequencies, and then repeats the cycle. 
 	frequencies = {200,500,800,1000,2000,5000,8000,10000,15000,20000,30000,40000,50000,60000,70000};
 
-	Example of use: 
+### Example of use: 
 
 <p align="center">
 	<img src="images/spectrums.png" height="400">
@@ -55,14 +55,14 @@ We have chosen an opposition based electrode patten instead of the more commonly
 
 It's possible other electrode arrangement schemes are better yet. 
 
-	Example of use: 
+### Example of use
 
 <p align="center">
 	<img src="images/picturegrid.png" height="500">
 </p>
 
 <p align="center">
-	<img src="images/LungscomparedtoCTScan.png" height="500">
+	<img src="images/LungscomparedtoCTScan.png" height="300">
 </p>
 
 
