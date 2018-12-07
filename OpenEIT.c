@@ -29,10 +29,10 @@ License Agreement.
 
 *********************************************************************************/
 
-//#ifdef _MISRA_RULES
-//#pragma diag(push)
-//#pragma diag(suppress:misra_rules_all:"suppress all MISRA rules for test")
-//#endif /* _MISRA_RULES */
+#ifdef _MISRA_RULES
+#pragma diag(push)
+#pragma diag(suppress:misra_rules_all:"suppress all MISRA rules for test")
+#endif /* _MISRA_RULES */
 
 #include <stdio.h>
 #include <stddef.h>  // for 'NULL'
@@ -119,6 +119,7 @@ int main(void)
   
   ADI_UART_RESULT_TYPE uartResult;
   int16_t  rxSize;
+  int16_t  txSize;  
   int16_t  mode = 0; 
   
   /* Flag which indicates whether to stop the program */
@@ -144,85 +145,97 @@ int main(void)
   adi_initpinmux();
   
   /* Initialize the UART */
-  if (ADI_UART_SUCCESS != uart_Init_Simple())
+//  if (ADI_UART_SUCCESS != uart_Init_Simple())
+//  {
+//    FAIL("uart_Init");
+//  }    
+//  
+  if (ADI_UART_SUCCESS != uart_Init())
   {
     FAIL("uart_Init");
   }    
   
-  PRINT("OpenEIT\n");
-  //    uint16_t numbytes = 1; 
-  //    /* UART processing loop */
-  //    while(bStopFlag == false)
-  //    {
-  //      rxSize = 2;
-  //      // only execute a blocking read buffer if something has been sent. 
-  //      if (adi_UART_GetNumRxBytes(hUartDevice) > numbytes)
-  //      {
-  //        /* Read a character */
-  //        uartResult = adi_UART_BufRx(hUartDevice, RxBuffer, &rxSize);
-  //      }
-  //      /* Select 1,2,3 to enter into a different mode. */
-  //      if(RxBuffer[0] == 'a' && RxBuffer[1] == '\n' )  // Time-Series
-  //      {
-  //        mode = 1;
-  //        PRINT("MODE 1: Time Series Impedance data\n");
-  //        init_mode_tetramux();
-  //        /* Stop the program upon receiving carriage return */
-  //        bStopFlag = true;      
-  //        
-  //      }          
-  //      else if (RxBuffer[0] == 'b' && RxBuffer[1] == '\n' )  // Bioimpedance Spectroscopy
-  //      {
-  //        mode = 2;
-  //        PRINT("MODE 2: Bioimpedance Spectroscopy\n");
-  //        init_mode_bis();
-  //        /* Stop the program upon receiving carriage return */
-  //        bStopFlag = true;
-  //      }
-  //      else if (RxBuffer[0] == 'c'  && RxBuffer[1] == '\n' )  // Tetrapolar Imaging 
-  //      {
-  //        mode = 3;
-  //        PRINT("MODE 3: Imaging\n");
-  //        init_mode_tetramux();
-  //        /* Stop the program upon receiving carriage return */
-  //        bStopFlag = true;    
-  //        
-  //      }
-  //      else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' )  // Bipolar Imaging 
-  //      {
-  //        mode = 4;
-  //        PRINT("MODE 4: Bipolar Imaging(faster for tank phantoms)\n");
-  //        init_mode_bipolar();
-  //        /* Stop the program upon receiving carriage return */
-  //        bStopFlag = true;    
-  //        
-  //      }        
-  //      else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' )  // Bipolar Time series Imaging 
-  //      {
-  //        mode = 5;
-  //        PRINT("MODE 5: Bipolar Time-series)\n");
-  //        init_mode_bipolar();
-  //        /* Stop the program upon receiving carriage return */
-  //        bStopFlag = true;    
-  //        
-  //      }                
-  //      else { 
-  //        PRINT("..\n");
-  //        delay(300);
-  //        //PRINT("Press a for Time-Series, b for Bioimpedance Spectroscopy, c for Imaging followed by return key.\n");
-  //      }
-  //      adi_UART_BufFlush(hUartDevice);
-  //      
-  //    }
-  
+  //PRINT("OpenEIT\n");
+  char msg1[300] = {0};
+  strcat(msg1, "OpenEIT\n");  
+  PRINT(msg1);
+  uint16_t numbytes = 2; 
+  bStopFlag = true;     
+  rxSize = 2;  
   mode = 3;
-  PRINT("MODE 3: Imaging\n");
-  init_mode_tetramux();
-  bStopFlag = true;    
-  PRINT("Completed Initialization\n\n");
+  init_mode_tetramux();  
+        
   /* main processing loop */
   while (bStopFlag == true) // running
   {
+    
+    // only execute a blocking read buffer if something has been sent. 
+    if (adi_UART_GetNumRxBytes(hUartDevice) > numbytes)
+    {
+      /* Read a character */
+      uartResult = adi_UART_BufRx(hUartDevice, RxBuffer, &rxSize);
+    }
+       
+    /* Select 1,2,3 to enter into a different mode. */
+    if(RxBuffer[0] == 'a' && RxBuffer[1] == '\n' && mode != 1)  // Time-Series
+    {
+      mode = 1;
+      // Reset everything.   
+      //re-initialize uart... 
+      uart_UnInit();
+      adi_GPIO_ResetToPowerUp();
+      adi_initpinmux();      
+      uart_Init();
+      adi_GPIO_UnInit();
+      adi_AFE_UnInit(hDevice);
+      PRINT("mode 1: time series\n");
+      init_mode_tetramux();     
+
+      //int16_t size;
+      //size = strlen(TxBuffer);
+      //adi_UART_BufTx(hUartDevice, TxBuffer, &size);
+
+      adi_UART_BufFlush(hUartDevice);
+    }          
+    else if (RxBuffer[0] == 'b' && RxBuffer[1] == '\n' && mode != 2)  // Bioimpedance Spectroscopy
+    {
+      //TxBuffer[0] = RxBuffer[0];
+      //TxBuffer[1] = '\n';
+      //txSize     = 2u;   
+      //uartResult = adi_UART_BufTx(hUartDevice, TxBuffer, &txSize);  
+      
+      // Reset everything. 
+      adi_GPIO_UnInit();  
+      adi_AFE_UnInit(hDevice);
+      PRINT("mode 2: bioimpedance spectroscopy\n");
+      mode = 2;
+      init_mode_bis();
+      PRINT("end initialize\n");
+      adi_UART_BufFlush(hUartDevice);
+    }
+    else if (RxBuffer[0] == 'c'  && RxBuffer[1] == '\n' && mode !=3)  // Tetrapolar Imaging 
+    {
+      mode = 3;
+      // Reset everything.  
+      adi_GPIO_UnInit();  
+      adi_AFE_UnInit(hDevice);
+      PRINT("mode 3: imaging\n");
+      init_mode_tetramux();
+      adi_UART_BufFlush(hUartDevice);
+    }
+    else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' )  // Bipolar Imaging 
+    {
+      mode = 4;
+      init_mode_bipolar();
+      adi_UART_BufFlush(hUartDevice);
+    }        
+    else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' )  // Bipolar Time series Imaging 
+    {
+      mode = 5;
+      init_mode_bipolar();
+      adi_UART_BufFlush(hUartDevice);
+    }                
+
     if (mode == 1) {  // time series
       time_series(hDevice, seq_afe_fast_meas_4wire);
     }
@@ -230,7 +243,7 @@ int main(void)
       bioimpedance_spectroscopy(hDevice, seq_afe_fast_acmeasBioZ_4wire);
     }
     else if (mode == 3) {  // 32 electrode imaging
-      uint32_t n_el = 8;
+      uint32_t n_el = 16;
       /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
       multiplex_adg732(hDevice, seq_afe_fast_meas_4wire, n_el);
     }
@@ -576,7 +589,7 @@ ADI_UART_RESULT_TYPE uart_Init (void) {
         test_Fail("adi_UART_Init() failed");
     }
 
-    Settings.BaudRate = ADI_UART_BAUD_115200;
+    Settings.BaudRate = ADI_UART_BAUD_115200; //ADI_UART_BAUD_115200;
     Settings.bBlockingMode = true;
     Settings.bInterruptMode = true;
     Settings.Parity = ADI_UART_PARITY_NONE;
@@ -844,11 +857,6 @@ void multiplex_adg732(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *const seq,uin
       int16_t* mx3_assignment = (int16_t *)truth_table[e[0]];  // A+ -> 
       int16_t* mx4_assignment = (int16_t *)truth_table[e[2]];  // V+ ->   
         
-//      int16_t* mx1_assignment = (int16_t *)truth_table[e[0]];  // A- -> 
-//      int16_t* mx2_assignment = (int16_t *)truth_table[e[1]];  // V- ->  
-//      int16_t* mx3_assignment = (int16_t *)truth_table[e[2]];  // A+ -> 
-//      int16_t* mx4_assignment = (int16_t *)truth_table[e[3]];  // V+ ->         
-      
       PinMap m1_portpin;  
       PinMap m2_portpin;  
       PinMap m3_portpin;  
@@ -1422,12 +1430,12 @@ void init_GPIO_ports(void) {
         }        
         
      }
-     PRINT(porttest);
+     //PRINT(porttest);
 }
 
 
-//#if defined ( __ICCARM__ )  // IAR compiler...
-///* Revert ADI MISRA Suppressions */
-//#define REVERT_ADI_MISRA_SUPPRESSIONS
-//#include "misra.h"
-//#endif
+#if defined ( __ICCARM__ )  // IAR compiler...
+/* Revert ADI MISRA Suppressions */
+#define REVERT_ADI_MISRA_SUPPRESSIONS
+#include "misra.h"
+#endif

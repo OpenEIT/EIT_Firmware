@@ -22,7 +22,7 @@
 
 #define UART0_TX_PORTP0_MUX  ((uint16_t) ((uint16_t) 2<<12))
 #define UART0_RX_PORTP0_MUX  ((uint16_t) ((uint16_t) 2<<14))
-#define SYS_CLK_OUT_CLOCK_OUT_PORTP1_MUX  ((uint16_t) ((uint16_t) 3<<14))
+//#define SYS_CLK_OUT_CLOCK_OUT_PORTP1_MUX  ((uint16_t) ((uint16_t) 3<<14))
 
 
 int32_t adi_initpinmux(void);
