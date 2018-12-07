@@ -1,16 +1,17 @@
 # Intro
 
-Installation of firmware development environment is in another readme. This details the function and operation of the firmware. 
-Wondering how the impedance measures are made? Want to get phase and magnitude out and play with that? Want to try different electrode stimulation patterns? 
+This details the function and operation of the firmware. Wondering how the impedance measures are made? Want to get magnitude AND an accurate phase out of the device? Want to try different electrode stimulation patterns? This is the place to be. This branch requires IAR Embedded Workbench to run, and there is another gcc-toolchain branch for those interested. 
 
 # Hardware 
-This firmware is meant for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy as time series impedance measurements.
- 
-![alt text](images/PCB.png "PCB")
+This firmware is designed for the Spectra: 32 electrode EIT device, which is also capable of bio-impedance spectroscopy and time series impedance measurements. It measures 2" square and is based on the ADuCM350 precision analog impedance analyzer chip. 
+
+<p align="center">
+	<img src="images/PCB.jpeg" height="200">
+</p>
 
 # Running the installed firmware. 
 
-The device comes pre-programmed with this firmware. Each time you reset the device a set of menu options is communicated via UART. Once you select an option, press the return key and that option will start executing until you power cycle once more. 
+The device comes pre-programmed with this firmware. Each time you reset the device a set of menu options is communicated via UART or Bluetooth. Once you select an option, press the return key and that option will start executing until you power cycle once more. 
 
 Options Outlines: 
 A) Time series - 
@@ -18,16 +19,21 @@ A) Time series -
 
    How to take a measurement with bioimpedance spectroscopy: A+, V+, V- ,A-
 
-   Example of Use: 
-![alt text](images/timeseriesexample.png "Time Series Example")
+### Example of Use 
+   
+<p align="center">
+	<img src="images/timeseriesexample.png" height="300">
+</p>
 
 B) Bioimpedance Spectroscopy - 
 	This outputs impedance magnitudes at the following frequencies, and then repeats the cycle. 
 	frequencies = {200,500,800,1000,2000,5000,8000,10000,15000,20000,30000,40000,50000,60000,70000};
 
-	Example of use: 
+### Example of use: 
 
-![alt text](images/spectrums.png "Spectrums")
+<p align="center">
+	<img src="images/spectrums.png" height="400">
+</p>
 
 C) Electrical Impedance Tomography - This is configurable in firmware to 8, 16, 32 electrodes dependent on desired timing and resolution trade offs etc. 
 
@@ -49,11 +55,19 @@ We have chosen an opposition based electrode patten instead of the more commonly
 
 It's possible other electrode arrangement schemes are better yet. 
 
-	Example of use: 
+### Example of use
 
-![alt text](images/picturegrid.png "Grid of 32 electrode reconstructions")
-
-![alt text](images/LungscomparedtoCTScan.png "My Thorax")
+<p align="center">
+	<img src="images/picturegrid.png" height="500">
+</p>
 
 A note on which debugger to use: 
 - I recommend using a Segger J-link debugger with SWD programming cable. If you are not using it for commercial use you can get the EDU version at a reasonable price(you don't even have to be part of a school). The configuration on the PCB also allows for the VCOM port to work which means you can also read serial through the same connection. The specific configuration can be seen in the .bat file contained in the EXE directory. 
+
+Behold my thorax! This was taken using this firmware, the most difficult part of the process was placing the electrodes.  
+
+<p align="center">
+	<img src="images/LungscomparedtoCTScan.png" height="300">
+</p>
+
+
