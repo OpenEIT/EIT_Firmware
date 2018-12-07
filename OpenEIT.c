@@ -162,7 +162,7 @@ int main(void)
   uint16_t numbytes = 2; 
   bStopFlag = true;     
   rxSize = 2;  
-  mode = 3;
+  mode = 4;
   init_mode_tetramux();  
         
   /* main processing loop */
@@ -190,20 +190,10 @@ int main(void)
       adi_AFE_UnInit(hDevice);
       PRINT("mode 1: time series\n");
       init_mode_tetramux();     
-
-      //int16_t size;
-      //size = strlen(TxBuffer);
-      //adi_UART_BufTx(hUartDevice, TxBuffer, &size);
-
       adi_UART_BufFlush(hUartDevice);
     }          
     else if (RxBuffer[0] == 'b' && RxBuffer[1] == '\n' && mode != 2)  // Bioimpedance Spectroscopy
     {
-      //TxBuffer[0] = RxBuffer[0];
-      //TxBuffer[1] = '\n';
-      //txSize     = 2u;   
-      //uartResult = adi_UART_BufTx(hUartDevice, TxBuffer, &txSize);  
-      
       // Reset everything. 
       adi_GPIO_UnInit();  
       adi_AFE_UnInit(hDevice);
@@ -213,28 +203,52 @@ int main(void)
       PRINT("end initialize\n");
       adi_UART_BufFlush(hUartDevice);
     }
-    else if (RxBuffer[0] == 'c'  && RxBuffer[1] == '\n' && mode !=3)  // Tetrapolar Imaging 
+    else if (RxBuffer[0] == 'c'  && RxBuffer[1] == '\n' && mode !=3)  // 8 electrode Tetrapolar Imaging 
     {
       mode = 3;
       // Reset everything.  
       adi_GPIO_UnInit();  
       adi_AFE_UnInit(hDevice);
-      PRINT("mode 3: imaging\n");
+      PRINT("mode 3: 8 electrode imaging\n");
       init_mode_tetramux();
       adi_UART_BufFlush(hUartDevice);
     }
-    else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' )  // Bipolar Imaging 
+    else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' && mode !=3)  // 16 electrode Tetrapolar Imaging 
     {
       mode = 4;
+      // Reset everything.  
+      adi_GPIO_UnInit();  
+      adi_AFE_UnInit(hDevice);
+      PRINT("mode 4: 16 electrode imaging\n");
+      init_mode_tetramux();
+      adi_UART_BufFlush(hUartDevice);
+    }
+    else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' && mode !=3)  // 32 electrode Tetrapolar Imaging 
+    {
+      mode = 5;
+      // Reset everything.  
+      adi_GPIO_UnInit();  
+      adi_AFE_UnInit(hDevice);
+      PRINT("mode 3: 32 electrode imaging\n");
+      init_mode_tetramux();
+      adi_UART_BufFlush(hUartDevice);
+    }    
+    else if (RxBuffer[0] == 'f'  && RxBuffer[1] == '\n' )  // Bipolar Imaging 
+    {
+      mode = 6;
       init_mode_bipolar();
       adi_UART_BufFlush(hUartDevice);
     }        
-    else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' )  // Bipolar Time series Imaging 
+    else if (RxBuffer[0] == 'g'  && RxBuffer[1] == '\n' )  // Bipolar Time series Imaging 
     {
-      mode = 5;
+      mode = 7;
       init_mode_bipolar();
       adi_UART_BufFlush(hUartDevice);
     }                
+    else {
+      // clears out UART buffer in case user presses random stuff a few times. 
+      adi_UART_BufFlush(hUartDevice);
+    }
 
     if (mode == 1) {  // time series
       time_series(hDevice, seq_afe_fast_meas_4wire);
@@ -242,16 +256,26 @@ int main(void)
     else if (mode == 2) {  // bioimpedance spectroscopy
       bioimpedance_spectroscopy(hDevice, seq_afe_fast_acmeasBioZ_4wire);
     }
-    else if (mode == 3) {  // 32 electrode imaging
-      uint32_t n_el = 16;
+    else if (mode == 3) {  // 8 electrode imaging
+      uint32_t n_el = 8;
       /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
       multiplex_adg732(hDevice, seq_afe_fast_meas_4wire, n_el);
     }
-    else if (mode == 4) {
+    else if (mode == 4) {  // 16 electrode imaging
+      uint32_t n_el = 16;
+      /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
+      multiplex_adg732(hDevice, seq_afe_fast_meas_4wire, n_el);
+    }    
+    else if (mode == 5) {  // 32 electrode imaging
+      uint32_t n_el = 32;
+      /* Perform the multiplex adg732 Tetrapolar Impedance measurements */
+      multiplex_adg732(hDevice, seq_afe_fast_meas_4wire, n_el);
+    }    
+    else if (mode == 6) {
       uint32_t n_el = 16;
       bipolar_adg732(hDevice, seq_fast_2wire_bipolar, n_el);
     }
-    else if (mode == 5) {
+    else if (mode == 7) {
       time_series_bipolar(hDevice, seq_fast_2wire_bipolar);
     }
     else {
@@ -649,13 +673,14 @@ void bioimpedance_spectroscopy(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *cons
 
   for (j = 0; j < MULTIFREQUENCY_ARRAY_SIZE; j++)   /* Here we start an outer frequency loop. */ 
   {    
-    //seq_afe_fast_acmeasBioZ_4wire
+    // seq_afe_fast_acmeasBioZ_4wire
     /* recalculate FCW here, based on number in array. */
     uint64_t FREQ_MOD = multifrequency[j];
     uint32_t FCW_MOD  = ((uint32_t)(((uint64_t)FREQ_MOD << 26) / 16000000 + 0.5));
     
     char                stringfrequency[MSG_MAXLEN_M2];
     sprintf(stringfrequency, "%s;", stringfreqs[j]);
+    char                msg[MSG_MAXLEN_M2] = {0};
     
     if (j >= MULTIFREQUENCY_ARRAY_SIZE) {  // reset J 
       j = 0;
@@ -691,17 +716,16 @@ void bioimpedance_spectroscopy(ADI_AFE_DEV_HANDLE  hDevice, const uint32_t *cons
       /* Calculate final magnitude value, calibrated with RTIA the gain of the instrumenation amplifier */
       rtiaAndGain = (uint32_t)((RTIA * 1.5) / INST_AMP_GAIN);
       magnitude_result[0] = calculate_magnitude(magnitude[1], magnitude[0], rtiaAndGain);
-      // 
-      char                msg[MSG_MAXLEN_M2] = {0};
+      
       char                tmp[300] = {0};  
       sprintf(msg, "%s:", "magnitudes");
       strcat(msg,stringfrequency);  
       sprintf_fixed32(tmp, magnitude_result[0]);
       strcat(msg,tmp);
-      strcat(msg," \r\n");       
-      PRINT(msg);
-      
     }
+    
+    strcat(msg," \r\n");       
+    PRINT(msg);
   }  
 }
 
