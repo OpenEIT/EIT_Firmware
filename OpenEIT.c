@@ -162,7 +162,7 @@ int main(void)
   uint16_t numbytes = 2; 
   bStopFlag = true;     
   rxSize = 2;  
-  mode = 4;
+  mode   = 4;
   init_mode_tetramux();  
         
   /* main processing loop */
@@ -213,7 +213,7 @@ int main(void)
       init_mode_tetramux();
       adi_UART_BufFlush(hUartDevice);
     }
-    else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' && mode !=3)  // 16 electrode Tetrapolar Imaging 
+    else if (RxBuffer[0] == 'd'  && RxBuffer[1] == '\n' && mode !=4)  // 16 electrode Tetrapolar Imaging 
     {
       mode = 4;
       // Reset everything.  
@@ -223,7 +223,7 @@ int main(void)
       init_mode_tetramux();
       adi_UART_BufFlush(hUartDevice);
     }
-    else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' && mode !=3)  // 32 electrode Tetrapolar Imaging 
+    else if (RxBuffer[0] == 'e'  && RxBuffer[1] == '\n' && mode !=5)  // 32 electrode Tetrapolar Imaging 
     {
       mode = 5;
       // Reset everything.  
