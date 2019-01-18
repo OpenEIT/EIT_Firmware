@@ -1,5 +1,5 @@
 /*! \addtogroup AFE_Library AFE Library
- *  @{
+ *  Author: Jean Rintoul , Mindseye Biomedical LLC Copyright 2018
  */
 
 #ifndef __SEQUENCES_H__

@@ -1,6 +1,7 @@
 /**********************************
 
-Author: Jean Rintoul , Mindseye Biomedical LLC 
+Author: Jean Rintoul , Mindseye Biomedical LLC Copyright 2018
+
 This software is modified from an original Analog Devices example, 
 It's original copyright notice is included below. 
 
@@ -10,10 +11,11 @@ Creative Commons Non-Commercial License((CC BY-NC-SA 4.0)).
 If you are a person who wants to experiment/hack or publish etc, please go ahead and do it! 
 We'd love an acknowledgement.
 
-If you are planning a commercial enterprise and have used this work in your development process, 
-please get in contact with Mindseye Biomedical LLC (jean2mindseyebiomedical.com)
-We'd love to License the technomlogy to you under a separate reasonable agreement,  
-or even help/assist/coordinate your development under a consulting agreement. 
+If you are planning a commercial enterprise and are making a derivative work, 
+please get in contact with Mindseye Biomedical LLC (jean@mindseyebiomedical.com). 
+We'd love a payment for use of the OpenEIT suite of work which would in turn help 
+us afford the time to maintain this project and make new projects, while giving 
+your company commerical use license. 
 
 Please support Open Source Hardware! Imagine a world where we shared knowledge, 
 to enable each other to reach greater heights. 
