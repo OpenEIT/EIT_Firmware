@@ -79,3 +79,11 @@ The Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Lice
 
 If you'd like to make a derivative of this project in a commercial setting, we'd love a payment so that we can afford to spend time both maintaining this project and making more projects like this one. If this hybrid open source model works, it would enable open source projects to receive some funding, making the global commons stronger to benefit everyone. 
 
+## Experimenting with the firmware
+
+The best way to get experimenting with the firmware is to start with the Analog Devices example code for the ADuCM350(the main precision microcontroller that Spectra is based on) - https://ez.analog.com/analog-microcontrollers/precision-microcontrollers/w/documents/2411/aducm350-faq-evaluation-kit-software-platform  
+
+Once you've got the analog examples working as a self-tutorial on how to get the environment set up, you can come back to this repository and play with stim patterns, any frequency you designate, or control the order bioimpedance measurements quite easily. As mentioned, there are two branches of the firmware repository, one is a yet to be completed GCC port(feel free to contribute to a full part of the IAR version), and the IAR Embedded Workbench IDE version in the main branch(I used V6.5) on Windows 10 through VMWare on my Mac Laptop, and a Segger J-Link to connect to the SWD.  
+
+
+
