@@ -1,0 +1,7 @@
+connect
+r
+erase
+r
+loadfile /home/pi/spectra/hex/openeit.hex
+r
+exit
