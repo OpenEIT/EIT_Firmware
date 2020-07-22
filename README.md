@@ -78,6 +78,18 @@ The best way to get experimenting with the firmware is to start with the Analog 
 
 Once you've got the Analog Devices examples working as a tutorial on how to get the environment set up, you can come back to this repository and play with stim patterns, any frequency you designate, or control the order bioimpedance measurements quite easily for your specific application. As mentioned, there are two branches of the firmware repository, one is a yet to be completed GCC port(feel free to contribute to a full port of the IAR branch into the GCC branch but might need some function testing to get it verified working), and the IAR Embedded Workbench IDE version in the main branch(I used V6.5) on Windows 10 through VMWare on my Mac Laptop, and a Segger J-Link to connect to the SWD.  
 
+## How to program the firmware the first time! 
+I got a few questions on this one, so I added a folder called programming helper which gives you some example codes which I use on a raspberry pi to successfully program both chips. If you are programming the firmware, please look through it and try it, but here is a synopsis: 
+Install Jlink commander... 
+Ensure you have the ADuCm350 drivers and cfg file on your system(get this from analog devices). This maps out the memory space on your chip. 
+cd "C:\Program Files (x86)\SEGGER\JLink_V630e"
+JLink.exe -device ADUCM350 -if SWD -speed 115.2 -jtagconf -1,-1 -autoconnect 1 -CommanderScript %~dp0\JLinkCommandFile.jlink
+
+This JlinkCommandFile, which is contained in the programming helper folder, can also just be typed into your jlink command prompt if you wish to execute it line by line. 
+You connect to the chip, reset, erase. Now the chip is not spewing forth data and is ready to be programmed, so load up the new file, reset to give it a fresh start and it's all over. 
+
+If you are having an issue, I also suggest toggling the power switch to the other position, and then trying to program it again. 
+Note: You do need to get yourself a Segger J-Link EDU version to make do this, and plug it into the SWD header closest to the USB connector! 
 
 
 ## License 
