@@ -95,6 +95,9 @@ You connect to the chip, reset, erase. Now the chip is not spewing forth data an
 If you are having an issue, I also suggest toggling the power switch to the other position, and then trying to program it again. 
 Note: You do need to get yourself a Segger J-Link EDU version to do this, and plug it into the SWD header closest to the USB connector! 
 
+## Common Issue
+
+A few people have had a hardware reset flag come up when trying to program the firwmare. You can obtain this if you have the SWD cable plugged into your J-Link the wrong way around. Please check that the red line matches with the 1 side of the plug. 
 
 ## License 
 
